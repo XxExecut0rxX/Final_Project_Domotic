@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:pro_final/home/cards/card_temperature.dart';
 import 'package:pro_final/home/cards/card_electricity.dart';
 import 'package:pro_final/home/cards/card_Humidity.dart';
+import 'package:pro_final/home/cards/card_lights.dart';
 class DataSlides extends StatelessWidget {
   DataSlides({ Key? key }) : super(key: key);
-
-  
 
   final gTempSlide = const CardTemperature();
   final gElectricitySlide = const CardElectricity();
   final gHumidity = const CardHumidity();
+  final gLights = const CardLights();
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class DataSlides extends StatelessWidget {
 
         Column(
           children: [
-            gElectricitySlide,
+            gLights,
             const SizedBox(
               height: 20.0,
             ),
