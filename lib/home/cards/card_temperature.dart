@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 class CardTemperature extends StatefulWidget {
   const CardTemperature({ Key? key }) : super(key: key);
@@ -8,9 +9,29 @@ class CardTemperature extends StatefulWidget {
 }
 
 class _CardTemperatureState extends State<CardTemperature> {
+  //Firebase Reference
+  final db = FirebaseDatabase.instance.reference();
+
+  String _displ = 'REsults';
+
+  @override
+  void initState() {
+    super.initState();
+    _activateListeners();
+  }
+
+  void _activateListeners() {
+    db.child('1').child('desc').onValue.listen((event) {
+      final String desc = event.snapshot.value;
+      setState(() {
+        _displ = desc;
+      });
+    });
+  }
+  //final firebase reference
   @override
   Widget build(BuildContext context) {
-    String inTemp = "  24°C"; 
+    String inTemp = "  $_displ °C"; 
     
     final textTemp = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
