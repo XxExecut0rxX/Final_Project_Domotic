@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 class CardHumidity extends StatefulWidget {
   const CardHumidity({ Key? key }) : super(key: key);
@@ -18,7 +19,7 @@ class CardHumidityState extends State<CardHumidity> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text(
-          "Home \nTemperature",
+          "Humidity \nLevel",
           style: TextStyle(
             color: Colors.white,
             fontSize: 15,

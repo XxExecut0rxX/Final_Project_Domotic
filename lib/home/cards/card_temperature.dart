@@ -12,7 +12,7 @@ class _CardTemperatureState extends State<CardTemperature> {
   //Firebase Reference
   final db = FirebaseDatabase.instance.reference();
 
-  String _displ = 'REsults';
+  String _displ = 'Init';
 
   @override
   void initState() {
@@ -21,7 +21,7 @@ class _CardTemperatureState extends State<CardTemperature> {
   }
 
   void _activateListeners() {
-    db.child('1').child('desc').onValue.listen((event) {
+    db.child('1').child('temperature').onValue.listen((event) {
       final String desc = event.snapshot.value;
       setState(() {
         _displ = desc;
@@ -31,7 +31,6 @@ class _CardTemperatureState extends State<CardTemperature> {
   //final firebase reference
   @override
   Widget build(BuildContext context) {
-    String inTemp = "  $_displ °C"; 
     
     final textTemp = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,7 +46,7 @@ class _CardTemperatureState extends State<CardTemperature> {
         ),
         const SizedBox(height: 40,),
         Text(
-          inTemp,
+          "  $_displ °C",
           style: const TextStyle(
             color: Colors.white,
             fontSize: 30,
