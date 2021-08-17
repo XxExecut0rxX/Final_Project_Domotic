@@ -30,6 +30,18 @@ class _CardLightsState extends State<CardLights> {
     });
   }
   
+  void updateData(){
+    if(_displ == 'On') {
+      db.child('floor1').update(
+        {
+          'led1' : 'Off'
+        }
+      );
+    } else{
+      db.child('floor1').update({'led1': 'On'});
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -60,7 +72,11 @@ class _CardLightsState extends State<CardLights> {
       ],
     );
 
-    return Container(
+    return GestureDetector( 
+      onTap: () { 
+        updateData();
+      },
+      child: Container(
       child: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 20,
@@ -103,6 +119,7 @@ class _CardLightsState extends State<CardLights> {
           colors: [Color(0xff077cbe), Color(0x0017a1cd)],
         ),
       ),
+    )
     );
   }
 }
