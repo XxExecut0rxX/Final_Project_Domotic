@@ -11,6 +11,29 @@ class CardHumidity extends StatefulWidget {
 }
 
 class CardHumidityState extends State<CardHumidity> {
+
+  //Firebase Reference
+  final db = FirebaseDatabase.instance.reference();
+
+  String _displ = 'Init';
+
+  @override
+  void initState() {
+    super.initState();
+    _activateListeners();
+  }
+
+  void _activateListeners() {
+    db.child('1').child('humidity').onValue.listen((event) {
+      final String desc = event.snapshot.value;
+      setState(() {
+        _displ = desc;
+      });
+    });
+  }
+
+  //final firebase reference
+
   @override
   Widget build(BuildContext context) {
     String inHumidity = "  35 %";
@@ -31,7 +54,7 @@ class CardHumidityState extends State<CardHumidity> {
           height: 40,
         ),
         Text(
-          inHumidity,
+          "  $_displ %",
           style: const TextStyle(
             color: Colors.white,
             fontSize: 30,

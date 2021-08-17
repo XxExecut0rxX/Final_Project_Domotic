@@ -36,7 +36,7 @@ class _CardTemperatureState extends State<CardTemperature> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text(
-          "Home \nTemperature",
+          "General \nTemperature",
           style: TextStyle(
             color: Colors.white,
             fontSize: 15,
