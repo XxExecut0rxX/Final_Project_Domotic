@@ -14,6 +14,7 @@ class DataSlides extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Column(
           children: [
@@ -22,7 +23,7 @@ class DataSlides extends StatelessWidget {
             gElectricitySlide,
           ],
         ),
-        const SizedBox(width: 30.0,),
+        const SizedBox(width: 20.0,),
 
         Column(
           children: [
