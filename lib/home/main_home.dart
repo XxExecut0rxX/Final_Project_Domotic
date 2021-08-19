@@ -18,7 +18,7 @@ class MainHome extends StatelessWidget {
               TextSpan(
                 text: "Smart ",
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Colors.black54,
                   fontFamily: "Poppins",
                   fontWeight: FontWeight.w900,
                 ),
@@ -62,36 +62,41 @@ class MainHome extends StatelessWidget {
     )
   );
 
-  final general = Row(
-    children : [
-      const Text(
-        "General ",
-        style: TextStyle(
-          fontSize: 28,
-          color: Colors.white,
-          fontFamily: "Poppins",
-          fontWeight: FontWeight.w900,
-        ),
-      ),
-      Expanded(child: Container()),
-
-      ElevatedButton.icon(
-        onPressed: (){}, 
-        icon: const Icon(Icons.add), 
-        label: const Text(
-          "Add"
-        ),
-        style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(const Color(0xff2a2961)),
-          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12.0),
-              side: const BorderSide(color: Colors.white),
-            ),
+  final general = Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 5.0),
+    child: Row(
+      children : [
+        const Text(
+          "General ",
+          style: TextStyle(
+            fontSize: 28,
+            color: Colors.black87,
+            fontFamily: "Poppins",
+            fontWeight: FontWeight.w900,
           ),
-        )
-      ),
-    ]
+        ),
+        Expanded(child: Container()),
+
+        ElevatedButton.icon(
+          onPressed: (){}, 
+          icon: const Icon(Icons.add), 
+          label: const Text(
+            "Add"
+          ),
+          style: ButtonStyle(
+            elevation: MaterialStateProperty.all(0.0),
+            foregroundColor: MaterialStateProperty.all(const Color(0xff56c2cd)),
+            backgroundColor: MaterialStateProperty.all(const Color(0xffe3fcff)),
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
+                //side: const BorderSide(color: Colors.white),
+              ),
+            ),
+          )
+        ),
+      ]
+    ),
   );
 
   final slidesD = Container(

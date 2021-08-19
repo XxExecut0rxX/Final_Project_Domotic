@@ -1,5 +1,6 @@
 // ignore_for_file: file_names
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 
@@ -41,14 +42,23 @@ class CardHumidityState extends State<CardHumidity> {
     final textHumidity = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          "Humidity \nLevel",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 15,
-            fontFamily: "Poppins",
-            fontWeight: FontWeight.w900,
-          ),
+        Row(
+          children: const [
+            Text(
+              "Humidity \nLevel",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 15,
+                fontFamily: "Poppins",
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+            SizedBox(width: 10.0,),
+            Icon(
+              Icons.opacity_outlined,
+              color: Colors.white,
+            ),
+          ],
         ),
         const SizedBox(
           height: 40,

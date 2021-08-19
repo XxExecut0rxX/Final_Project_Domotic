@@ -48,14 +48,23 @@ class _CardLightsState extends State<CardLights> {
     final textLights = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          "General \nLights",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 15,
-            fontFamily: "Poppins",
-            fontWeight: FontWeight.w900,
-          ),
+        Row(
+          children: const [
+            Text(
+              "General \nLights",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 15,
+                fontFamily: "Poppins",
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+            SizedBox(width: 10.0,),
+            Icon(
+              Icons.lightbulb_outline,
+              color: Colors.white,
+            ),
+          ],
         ),
         const SizedBox(
           height: 40,

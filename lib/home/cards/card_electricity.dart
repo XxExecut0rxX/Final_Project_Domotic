@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CardElectricity extends StatefulWidget {
@@ -16,14 +17,23 @@ class _CardElectricityState extends State<CardElectricity> {
     final textElectricity = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          "Electricity\nUsage",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 15,
-            fontFamily: "Poppins",
-            fontWeight: FontWeight.w900,
-          ),
+        Row(
+          children: const [
+            Text(
+              "Electricity\nUsage",
+                style: TextStyle(
+                color: Colors.white,
+                fontSize: 15,
+                fontFamily: "Poppins",
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+            SizedBox(width: 10.0,),
+            Icon(
+              CupertinoIcons.bolt,
+              color: Colors.white,
+            )
+          ],
         ),
         const SizedBox(
           height: 40,

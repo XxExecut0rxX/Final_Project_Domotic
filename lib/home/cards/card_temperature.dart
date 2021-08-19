@@ -35,14 +35,23 @@ class _CardTemperatureState extends State<CardTemperature> {
     final textTemp = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          "General \nTemperature",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 15,
-            fontFamily: "Poppins",
-            fontWeight: FontWeight.w900,
-          ),
+        Row(
+          children: const [
+            Text(
+              "General \nTemperature",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 15,
+                fontFamily: "Poppins",
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+            SizedBox(width: 1.0,),
+            Icon(
+              Icons.thermostat_outlined,
+              color: Colors.white,
+            ),
+          ],
         ),
         const SizedBox(height: 40,),
         Text(

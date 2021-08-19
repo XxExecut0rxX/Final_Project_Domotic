@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'home/main_home.dart';
+import 'package:pro_final/bottomNavBar/bottom_Nav_Bar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
+        backgroundColor: Colors.white,
         body: Padding(
           padding: const EdgeInsets.all(18.0),
           child: Column(
@@ -26,8 +28,8 @@ class MyApp extends StatelessWidget {
             ],
           ),
         ),
-        backgroundColor: const Color(0xff2a2961),
-      ),
+        bottomNavigationBar: const BottomNavBar1(),
+      ), 
     );
   }
 }
