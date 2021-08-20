@@ -57,14 +57,16 @@ class _micScreenState extends State<micScreen> {
             ),
           ),
           const Image(
-            image: AssetImage('assets/Images/voice_wave.jpg',
+            image: AssetImage(
+              'assets/Images/voice_wave.png',
             ),
-            height: 200.0,
+            height: 11.0,
           ),
           const SizedBox(width: double.infinity,height: 10,),
-          FloatingActionButton.large(onPressed: (){},
+          FloatingActionButton.large(
+            onPressed: (){},
             child: const Icon(Icons.mic_none),
-          )
+          ),
         ],
       ),
     );
