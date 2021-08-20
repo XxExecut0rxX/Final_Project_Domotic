@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pro_final/mic_screen/mic_Screen.dart';
 import 'home/main_home.dart';
 import 'package:pro_final/bottomNavBar/bottom_Nav_Bar.dart';
 
@@ -23,8 +24,8 @@ class MyApp extends StatelessWidget {
         body: Padding(
           padding: const EdgeInsets.all(18.0),
           child: Column(
-            children: [
-              MainHome(),
+            children:  [
+              MainHome()
             ],
           ),
         ),

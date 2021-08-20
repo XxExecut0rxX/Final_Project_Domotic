@@ -22,7 +22,7 @@ class _CardLightsState extends State<CardLights> {
   }
 
   void _activateListeners() {
-    db.child('floor1').child('led1').onValue.listen((event) {
+    db.child('floor1/room1').child('lights').onValue.listen((event) {
       final String desc = event.snapshot.value;
       setState(() {
         _displ = desc;
@@ -31,14 +31,14 @@ class _CardLightsState extends State<CardLights> {
   }
   
   void updateData(){
-    if(_displ == 'On') {
-      db.child('floor1').update(
+    if(_displ == 'on') {
+      db.child('floor1/room1').update(
         {
-          'led1' : 'Off'
+          'lights' : 'off'
         }
       );
     } else{
-      db.child('floor1').update({'led1': 'On'});
+      db.child('floor1/room1').update({'lights': 'on'});
     }
   }
 
@@ -70,7 +70,7 @@ class _CardLightsState extends State<CardLights> {
           height: 40,
         ),
         Text(
-          "$_displ :",
+          "Lights: $_displ ",
           style: const TextStyle(
             color: Colors.white,
             fontSize: 30,

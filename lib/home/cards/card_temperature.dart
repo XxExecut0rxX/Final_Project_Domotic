@@ -21,8 +21,8 @@ class _CardTemperatureState extends State<CardTemperature> {
   }
 
   void _activateListeners() {
-    db.child('1').child('temperature').onValue.listen((event) {
-      final String desc = event.snapshot.value;
+    db.child('floor1/room1/sensors').child('temperature').onValue.listen((event) {
+      final String desc = event.snapshot.value.toString();
       setState(() {
         _displ = desc;
       });
@@ -55,7 +55,7 @@ class _CardTemperatureState extends State<CardTemperature> {
         ),
         const SizedBox(height: 40,),
         Text(
-          "  $_displ °C",
+          "  $_displ°C",
           style: const TextStyle(
             color: Colors.white,
             fontSize: 30,

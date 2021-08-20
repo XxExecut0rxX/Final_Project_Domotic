@@ -25,8 +25,8 @@ class CardHumidityState extends State<CardHumidity> {
   }
 
   void _activateListeners() {
-    db.child('1').child('humidity').onValue.listen((event) {
-      final String desc = event.snapshot.value;
+    db.child('floor1/room1/sensors').child('humidity').onValue.listen((event) {
+      final String desc = event.snapshot.value.toString();
       setState(() {
         _displ = desc;
       });
@@ -37,7 +37,6 @@ class CardHumidityState extends State<CardHumidity> {
 
   @override
   Widget build(BuildContext context) {
-    String inHumidity = "  35 %";
 
     final textHumidity = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,7 +63,7 @@ class CardHumidityState extends State<CardHumidity> {
           height: 40,
         ),
         Text(
-          "  $_displ %",
+          "  $_displ%",
           style: const TextStyle(
             color: Colors.white,
             fontSize: 30,

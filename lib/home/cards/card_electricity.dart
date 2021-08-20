@@ -12,7 +12,7 @@ class _CardElectricityState extends State<CardElectricity> {
 
   @override
   Widget build(BuildContext context) {
-    String inElectricity = "230.5 W";
+    String inElectricity = "135.3W";
 
     final textElectricity = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
