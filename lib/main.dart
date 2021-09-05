@@ -1,23 +1,32 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
-import 'package:pro_final/mic_screen/mic_Screen.dart';
 import 'package:pro_final/home/main_home.dart';
 import 'package:pro_final/home/profile_screen/profile_Screen.dart';
-import 'package:pro_final/bottomNavBar/bottom_Nav_Bar.dart';
 import 'package:pro_final/home/notifications_screen/notif_screen.dart';
+import 'package:pro_final/home/list_screen/list_Screen.dart';
+import 'package:titled_navigation_bar/titled_navigation_bar.dart';
 
 void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   MyApp({Key? key}) : super(key: key);
-  // This widget is the root of your application.
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  int pageIndex = 0;
 
   List<Widget> pageList = [
     MainHome(),
-    
+    const ListScreen(),
+    const notifScreen(),
+    profileScreen()
   ];
-  
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -31,11 +40,50 @@ class MyApp extends StatelessWidget {
           padding: const EdgeInsets.all(18.0),
           child: Column(
             children: [
-              notifScreen()
+              //pageList[pageIndex],
+              PageTransitionSwitcher(
+                transitionBuilder: (child, primaryAnimation, secondaryAnimation) => 
+                FadeThroughTransition(
+                  animation: primaryAnimation, 
+                  secondaryAnimation: 
+                  secondaryAnimation, 
+                  child: child,
+                  ),
+                  child: pageList[pageIndex],
+                ),
             ],
           ),
         ),
-        bottomNavigationBar: const BottomNavBar1(),
+        bottomNavigationBar: TitledBottomNavigationBar(
+          activeColor: const Color(0xFF33E1EC),
+          inactiveColor: Colors.black45,
+          enableShadow: true,
+          reverse: true,
+          currentIndex: pageIndex, // Use this to update the Bar giving a position
+          onTap: (index) {
+            setState((){
+              pageIndex = index;
+            }); 
+          },
+          items: [
+            TitledNavigationBarItem(
+              title: const Text('Home'),
+              icon: const Icon(Icons.home_outlined),
+            ),
+            TitledNavigationBarItem(
+              title: const Text('Voice'),
+              icon: const Icon(Icons.mic),
+            ),
+            TitledNavigationBarItem(
+              title: const Text('Notification'),
+              icon: const Icon(Icons.notifications_outlined),
+            ),
+            TitledNavigationBarItem(
+              title: const Text('Profile'),
+              icon: const Icon(Icons.person_outline),
+            ),
+          ],
+        ),
       ), 
     );
   }
