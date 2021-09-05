@@ -3,15 +3,21 @@ import 'package:pro_final/mic_screen/mic_Screen.dart';
 import 'package:pro_final/home/main_home.dart';
 import 'package:pro_final/home/profile_screen/profile_Screen.dart';
 import 'package:pro_final/bottomNavBar/bottom_Nav_Bar.dart';
+import 'package:pro_final/home/notifications_screen/notif_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
+  MyApp({Key? key}) : super(key: key);
   // This widget is the root of your application.
+
+  List<Widget> pageList = [
+    MainHome(),
+    
+  ];
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -25,7 +31,7 @@ class MyApp extends StatelessWidget {
           padding: const EdgeInsets.all(18.0),
           child: Column(
             children: [
-              profileScreen()
+              notifScreen()
             ],
           ),
         ),
