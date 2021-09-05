@@ -11,9 +11,18 @@ class ListScreen extends StatefulWidget {
 
 class ListScreenState extends State<ListScreen> {
   @override
+
+  final bar = const Center(
+    child: Text("List"),
+  );
+
   Widget build(BuildContext context) {
-    return Container(
-      
+    return SafeArea(
+      child: Column(
+        children: [
+          bar,
+        ],
+      ),
     );
   }
 }

@@ -14,6 +14,7 @@ class _CardLightsState extends State<CardLights> {
   final db = FirebaseDatabase.instance.reference();
 
   String _displ = 'Init';
+  IconData lightIcon = Icons.lightbulb_outline;
 
   @override
   void initState() {
@@ -26,6 +27,12 @@ class _CardLightsState extends State<CardLights> {
       final String desc = event.snapshot.value;
       setState(() {
         _displ = desc;
+        if(_displ == 'on') {
+          lightIcon = Icons.lightbulb;
+        }
+        else{
+          lightIcon = Icons.lightbulb_outline;
+        }
       });
     });
   }
@@ -49,8 +56,8 @@ class _CardLightsState extends State<CardLights> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
-          children: const [
-            Text(
+          children: [
+            const Text(
               "General \nLights",
               style: TextStyle(
                 color: Colors.white,
@@ -59,9 +66,9 @@ class _CardLightsState extends State<CardLights> {
                 fontWeight: FontWeight.w900,
               ),
             ),
-            SizedBox(width: 10.0,),
+            const SizedBox(width: 10.0,),
             Icon(
-              Icons.lightbulb_outline,
+              lightIcon,
               color: Colors.white,
             ),
           ],

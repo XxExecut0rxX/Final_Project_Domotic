@@ -18,7 +18,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  int pageIndex = 0;
+  int pageIndex = 1;
 
   List<Widget> pageList = [
     MainHome(),
@@ -71,11 +71,11 @@ class _MyAppState extends State<MyApp> {
               icon: const Icon(Icons.home_outlined),
             ),
             TitledNavigationBarItem(
-              title: const Text('Voice'),
-              icon: const Icon(Icons.mic),
+              title: const Text('Lists'),
+              icon: const Icon(Icons.list_alt),
             ),
             TitledNavigationBarItem(
-              title: const Text('Notification'),
+              title: const Text('Notifications'),
               icon: const Icon(Icons.notifications_outlined),
             ),
             TitledNavigationBarItem(
