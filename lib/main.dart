@@ -24,8 +24,8 @@ class MyApp extends StatelessWidget {
         body: Padding(
           padding: const EdgeInsets.all(18.0),
           child: Column(
-            children:  const [
-              micScreen()
+            children:  [
+              MainHome()
             ],
           ),
         ),
