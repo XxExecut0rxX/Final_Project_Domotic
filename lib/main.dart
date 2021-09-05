@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pro_final/mic_screen/mic_Screen.dart';
-import 'home/main_home.dart';
+import 'package:pro_final/home/main_home.dart';
+import 'package:pro_final/home/profile_screen/profile_Screen.dart';
 import 'package:pro_final/bottomNavBar/bottom_Nav_Bar.dart';
 
 void main() {
@@ -16,7 +17,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
@@ -24,8 +24,8 @@ class MyApp extends StatelessWidget {
         body: Padding(
           padding: const EdgeInsets.all(18.0),
           child: Column(
-            children:  [
-              MainHome()
+            children: [
+              profileScreen()
             ],
           ),
         ),
