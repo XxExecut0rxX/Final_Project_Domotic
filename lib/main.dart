@@ -18,7 +18,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  int pageIndex = 1;
+  int pageIndex = 0;
 
   List<Widget> pageList = [
     MainHome(),
