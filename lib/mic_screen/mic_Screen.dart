@@ -12,6 +12,7 @@ class micScreen extends StatefulWidget {
 class _micScreenState extends State<micScreen> {
   @override
   Widget build(BuildContext context) {
+    // ignore: avoid_unnecessary_containers
     return Container(
 
       child: Column(

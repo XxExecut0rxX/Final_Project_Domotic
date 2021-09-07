@@ -50,7 +50,7 @@ class _CardElectricityState extends State<CardElectricity> {
       ],
     );
 
-    return Container(
+    return SizedBox(
       width: 156,
       height: 232,
       child: Row(

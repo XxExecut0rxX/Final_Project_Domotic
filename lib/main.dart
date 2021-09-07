@@ -1,5 +1,7 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
+import 'package:pro_final/home/cards/button_lights_screen/button_light_screen.dart';
+import 'package:pro_final/home/cards/button_lights_screen/test.dart';
 import 'package:pro_final/home/main_home.dart';
 import 'package:pro_final/home/profile_screen/profile_Screen.dart';
 import 'package:pro_final/home/notifications_screen/notif_screen.dart';
@@ -19,7 +21,6 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   int pageIndex = 0;
-
   List<Widget> pageList = [
     MainHome(),
     const ListScreen(),
@@ -36,24 +37,18 @@ class _MyAppState extends State<MyApp> {
       ),
       home: Scaffold(
         backgroundColor: Colors.white,
-        body: Padding(
-          padding: const EdgeInsets.all(18.0),
-          child: Column(
-            children: [
-              //pageList[pageIndex],
-              PageTransitionSwitcher(
-                transitionBuilder: (child, primaryAnimation, secondaryAnimation) => 
-                FadeThroughTransition(
-                  animation: primaryAnimation, 
-                  secondaryAnimation: 
-                  secondaryAnimation, 
-                  child: child,
-                  ),
-                  child: pageList[pageIndex],
+        body: const lightButtonScreen(),
+            //pageList[pageIndex],
+            /*PageTransitionSwitcher(
+              transitionBuilder: (child, primaryAnimation, secondaryAnimation) => 
+              FadeThroughTransition(
+                animation: primaryAnimation, 
+                secondaryAnimation: 
+                secondaryAnimation, 
+                child: child,
                 ),
-            ],
-          ),
-        ),
+                child: pageList[pageIndex],
+              ),*/
         bottomNavigationBar: TitledBottomNavigationBar(
           activeColor: const Color(0xFF33E1EC),
           inactiveColor: Colors.black45,
