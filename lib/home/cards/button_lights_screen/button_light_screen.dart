@@ -16,6 +16,7 @@ class lightButtonScreen extends StatefulWidget {
 class _lightButtonScreenState extends State<lightButtonScreen> {
   
   final bar = Row(
+    mainAxisAlignment: MainAxisAlignment.center,
     children: [
       TextButton(
         onPressed: (){},
@@ -26,6 +27,8 @@ class _lightButtonScreenState extends State<lightButtonScreen> {
           ],
         ), 
       ),
+      SizedBox(width: 100,),
+      Text('Lights'),
     ],
   );
   
@@ -59,17 +62,18 @@ class _lightButtonScreenState extends State<lightButtonScreen> {
 
   //horizontal snap bar
   List<String> data = [
-    'room9',
-    'room8',
-    'room7',
-    'room6',
-    'room5',
-    'room4',
-    'room3'
+    'Room1',
+    'Room2',
+    'Room3',
+    'Room4',
+    'Room5',
+    'Room6',
+    'Room7'
   ];
   int _focusedIndex = 0;
 
   Widget _buildListItem(BuildContext context, int index) {
+
     //horizontal
     if (index == data.length) {
       return const Center(
@@ -78,25 +82,47 @@ class _lightButtonScreenState extends State<lightButtonScreen> {
     }
     return SizedBox(
       width: 140,
-      height: 1,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
             height: 50,
             width: 100,
-            color: Colors.lightBlueAccent,
+            //color: Colors.lightBlueAccent,
             child: Center(
                 child: Text(
-              "${data[index]}",
-              style: TextStyle(fontSize: 30),
-            )),
-          )
+                data[index],
+                style: const TextStyle(
+                  fontSize: 20,
+                  color: Colors.black54,
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     )
     ;
   }
+
+  final centerLightIcon = Container(
+    child: Image.network('https://github.com/XxExecut0rxX/Final_Project_Domotic/blob/master/assets/Images/lightsicon/lightson.png'),
+    width: 200,
+    height: 200,
+    decoration: BoxDecoration(
+      color: Colors.white,
+      borderRadius: BorderRadius.circular(100),
+      boxShadow: [
+        BoxShadow(
+          color: Colors.grey.withOpacity(0.5),
+          spreadRadius: 1,
+          blurRadius: 4,
+          offset: const Offset(2, 4),
+        ),
+      ],
+    ),
+  );
 
   void _onItemFocus(int index) {
     setState(() {
@@ -108,19 +134,55 @@ class _lightButtonScreenState extends State<lightButtonScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           bar,
           const SizedBox(height: 50,),
-          slider,
+          Stack(
+            clipBehavior:  Clip.none,
+            alignment: AlignmentDirectional.center,
+            children: [
+              slider,
+              Positioned(
+                top: 50,
+                child: centerLightIcon,
+              ),
+            ]
+          ),
           const SizedBox(height: 50,),
+
+          //scrollsnaplist
           Expanded(
-            child: ScrollSnapList(
-              onItemFocus: _onItemFocus,
-              itemSize: 140,
-              dynamicItemSize: true,
-              itemBuilder: _buildListItem,
-              itemCount: data.length,
-              reverse: false,
+            child: Stack(
+              children: [
+                Center(
+                  child: Container(
+                    width: 90,
+                    height: 45,
+                    decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 1,
+                          blurRadius: 4,
+                          offset: const Offset(2, 4),
+                        ),
+                      ]
+                    ),
+                  ),
+                ),
+                ScrollSnapList(
+                  onItemFocus: _onItemFocus,
+                  itemSize: 140,
+                  dynamicItemSize: true,
+                  itemBuilder: _buildListItem,
+                  itemCount: data.length,
+                  reverse: false,
+                ),
+                
+              ]
             ),
           ),
           const SizedBox(height: 30,),
