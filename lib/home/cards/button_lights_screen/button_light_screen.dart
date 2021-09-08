@@ -16,7 +16,7 @@ class lightButtonScreen extends StatefulWidget {
 class _lightButtonScreenState extends State<lightButtonScreen> {
   
   final bar = Row(
-    mainAxisAlignment: MainAxisAlignment.center,
+    mainAxisAlignment: MainAxisAlignment.start,
     children: [
       TextButton(
         onPressed: (){},
@@ -27,8 +27,8 @@ class _lightButtonScreenState extends State<lightButtonScreen> {
           ],
         ), 
       ),
-      SizedBox(width: 100,),
-      Text('Lights'),
+      const SizedBox(width: 105,),
+      const Text('Lights'),
     ],
   );
   
@@ -51,7 +51,7 @@ class _lightButtonScreenState extends State<lightButtonScreen> {
       ),
       customWidths: CustomSliderWidths(
         trackWidth: 4,
-        handlerSize: 25,
+        handlerSize: 20,
       ),
     ),
     onChange: (double value) {
@@ -107,7 +107,11 @@ class _lightButtonScreenState extends State<lightButtonScreen> {
   }
 
   final centerLightIcon = Container(
-    child: Image.network('https://github.com/XxExecut0rxX/Final_Project_Domotic/blob/master/assets/Images/lightsicon/lightson.png'),
+    child: Padding(
+      padding: const EdgeInsets.all(30.0),
+      child: Image.network('https://github.com/XxExecut0rxX/Final_Project_Domotic/blob/master/assets/Images/lightsicon/lightson.png?raw=true'
+      ),
+    ),
     width: 200,
     height: 200,
     decoration: BoxDecoration(
@@ -142,11 +146,27 @@ class _lightButtonScreenState extends State<lightButtonScreen> {
             clipBehavior:  Clip.none,
             alignment: AlignmentDirectional.center,
             children: [
+              const Positioned(
+                  child: Text('0%'),
+                  bottom: 50,
+                  left: 1,
+                ),
+              const Positioned(
+                  child: Text('100%'),
+                  bottom: 50,
+                  right: -10,
+                ),
+              const Positioned(
+                  child: Text('Brightness'),
+                  bottom: 10,
+                ),
               slider,
               Positioned(
                 top: 50,
                 child: centerLightIcon,
               ),
+              
+              
             ]
           ),
           const SizedBox(height: 50,),
@@ -186,6 +206,7 @@ class _lightButtonScreenState extends State<lightButtonScreen> {
             ),
           ),
           const SizedBox(height: 30,),
+          //switch
           FlutterSwitch(
             width: 110.0,
             height: 55.0,
