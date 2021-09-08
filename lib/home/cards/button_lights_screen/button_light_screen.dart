@@ -91,6 +91,7 @@ class _lightButtonScreenState extends State<lightButtonScreen> {
       final int desc = event.snapshot.value;
       setState(() {
         nRooms = desc;
+        _focusedIndexRooms = 0;
       });
     });
   }
@@ -144,7 +145,8 @@ class _lightButtonScreenState extends State<lightButtonScreen> {
     //horizontal
     if (index == roomdata.length) {
       return const Center(
-        child: CircularProgressIndicator(),
+        child: //CircularProgressIndicator(),
+        Text(''),
       );
     }
     return SizedBox(
@@ -189,7 +191,7 @@ class _lightButtonScreenState extends State<lightButtonScreen> {
               child: Text(
                 floordata[index],
                 style: const TextStyle(
-                  fontSize: 20,
+                  fontSize: 15,
                   color: Colors.black54,
                   fontWeight: FontWeight.w900,
                 ),
@@ -228,6 +230,7 @@ class _lightButtonScreenState extends State<lightButtonScreen> {
           const SizedBox(
             height: 50,
           ),
+          //slider bar
           Stack(
               clipBehavior: Clip.none,
               alignment: AlignmentDirectional.center,
@@ -298,21 +301,21 @@ class _lightButtonScreenState extends State<lightButtonScreen> {
                 ),
               ]),
           const SizedBox(
-            height: 10,
+            height: 20,
           ),
           //scrollsnaplist floors
           Expanded(
             child: Stack(children: [
               Center(
                 child: Container(
-                  width: 90,
-                  height: 45,
+                  width: 70,
+                  height: 35,
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(20),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
+                          color: Colors.blue.shade800.withOpacity(0.5),
                           spreadRadius: 1,
                           blurRadius: 4,
                           offset: const Offset(2, 4),
@@ -331,7 +334,7 @@ class _lightButtonScreenState extends State<lightButtonScreen> {
             ]),
           ),
           //scrollsnaplist rooms
-          const SizedBox(height: 10,),
+          const SizedBox(height: 5,),
           Expanded(
             child: Stack(children: [
               Center(
@@ -343,7 +346,7 @@ class _lightButtonScreenState extends State<lightButtonScreen> {
                       borderRadius: BorderRadius.circular(20),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
+                          color: Colors.blue.shade200.withOpacity(0.5),
                           spreadRadius: 1,
                           blurRadius: 4,
                           offset: const Offset(2, 4),
@@ -362,7 +365,7 @@ class _lightButtonScreenState extends State<lightButtonScreen> {
             ]),
           ),
           const SizedBox(
-            height: 30,
+            height: 40,
           ),
           //switch
           FlutterSwitch(
