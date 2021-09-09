@@ -43,16 +43,19 @@ class _notifScreenState extends State<notifScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Column(
-        //crossAxisAlignment: CrossAxisAlignment.center,
-        //mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          bar,
-          const SizedBox(height: 50,),
-          notifIcon,
-          const SizedBox(height: 50,),
-          noNotif,
-        ],
+      child: Padding(
+        padding: const EdgeInsets.all(18.0),
+        child: Column(
+          //crossAxisAlignment: CrossAxisAlignment.center,
+          //mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            bar,
+            const SizedBox(height: 50,),
+            notifIcon,
+            const SizedBox(height: 50,),
+            noNotif,
+          ],
+        ),
       ),
     );
   }

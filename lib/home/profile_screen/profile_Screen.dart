@@ -60,19 +60,22 @@ class profileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Column(
-      children: [
-        bar,
-        const SizedBox(height: 20),
-        profilePicture,
-        const SizedBox(height: 20),
-        account,
-        help,
-        techProblem,
-        settings,
-        logOut,
-      ],
-    ));
+        child: Padding(
+          padding: const EdgeInsets.all(18.0),
+          child: Column(
+              children: [
+          bar,
+          const SizedBox(height: 20),
+          profilePicture,
+          const SizedBox(height: 20),
+          account,
+          help,
+          techProblem,
+          settings,
+          logOut,
+              ],
+            ),
+        ));
   }
 }
 
