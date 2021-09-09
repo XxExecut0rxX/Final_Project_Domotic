@@ -1,21 +1,22 @@
-// ignore_for_file: camel_case_types, duplicate_ignore, slash_for_doc_comments, non_constant_identifier_names
+// ignore_for_file: camel_case_types
 
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
-import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 import 'package:scroll_snap_list/scroll_snap_list.dart';
+import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
-// ignore: camel_case_types
-class lightButtonScreen extends StatefulWidget {
-  const lightButtonScreen({Key? key}) : super(key: key);
+class buttonTempScreen extends StatefulWidget {
+  const buttonTempScreen({ Key? key }) : super(key: key);
 
   @override
-  _lightButtonScreenState createState() => _lightButtonScreenState();
+  _buttonTempScreenState createState() => _buttonTempScreenState();
 }
 
-class _lightButtonScreenState extends State<lightButtonScreen> {
+class _buttonTempScreenState extends State<buttonTempScreen> {
+  
+  // ignore: slash_for_doc_comments
   /***********FIREBASE IMPLEMENTATION**********/
   final db = FirebaseDatabase.instance.reference();
   String _displ = 'on';
@@ -24,7 +25,6 @@ class _lightButtonScreenState extends State<lightButtonScreen> {
   void initState() {
     super.initState();
     updateSwitchToggler(_focusedIndexRooms, _focusedIndexFloors);
-    updateInitialSlider(_focusedIndexRooms, _focusedIndexFloors);
     updateInitialTemp(_focusedIndexRooms, _focusedIndexFloors);
     InitRoomsFloors(_focusedIndexFloors);
   }
@@ -50,12 +50,8 @@ class _lightButtonScreenState extends State<lightButtonScreen> {
       setState(() {
         if (_displ == 'on') {
           switchtoggle = true;
-          light_on_off = Image.network(
-              'https://github.com/XxExecut0rxX/Final_Project_Domotic/blob/master/assets/Images/lightsicon/lightson.png?raw=true');
-        } else {
+          } else {
           switchtoggle = false;
-          light_on_off = Image.network(
-              'https://github.com/XxExecut0rxX/Final_Project_Domotic/blob/master/assets/Images/lightsicon/lightsoff.png?raw=true');
         }
       });
     });
@@ -64,7 +60,8 @@ class _lightButtonScreenState extends State<lightButtonScreen> {
   //slider brightness updates
   double brightness = 0;
   int humidity = 0;
-  int temperature = 0;
+
+
   void updateInitialTemp(int index, int index1) {
     index += 1;
     index1 += 1;
@@ -76,7 +73,8 @@ class _lightButtonScreenState extends State<lightButtonScreen> {
         .listen((event) {
       final int desc = event.snapshot.value;
       setState(() {
-        temperature = desc;
+        brightness = desc.toDouble();
+
       });
     });
     //humidity
@@ -91,35 +89,12 @@ class _lightButtonScreenState extends State<lightButtonScreen> {
       });
     });
   }
-  
-  void updateSlider(int index, double value, int index1) {
-    index = index + 1;
-    index1 = index1 + 1;
-    int inval = value.round();
-    db.child('floor$index1/room$index').update({'brightness': inval});
-  }
 
-  void updateInitialSlider(int index, int index1) {
-    index += 1;
-    index1 += 1;
-    //slider
-    db.child('floor$index1/room$index').child('brightness').onValue.listen((event) {
-      final int desc = event.snapshot.value;
-      setState(() {
-        brightness = desc.toDouble();
-      });
-    });
-
-  }
-  
   //initializer rooms and floors : just rooms for now
-  void InitRoomsFloors(int index1){
+  // ignore: non_constant_identifier_names
+  void InitRoomsFloors(int index1) {
     index1 += 1;
-    db
-        .child('floor$index1')
-        .child('Nrooms')
-        .onValue
-        .listen((event) {
+    db.child('floor$index1').child('Nrooms').onValue.listen((event) {
       final int desc = event.snapshot.value;
       setState(() {
         nRooms = desc;
@@ -172,13 +147,13 @@ class _lightButtonScreenState extends State<lightButtonScreen> {
   int nFloors = 0;
   int _focusedIndexRooms = 0;
   int _focusedIndexFloors = 0;
-  
+
   Widget _buildListItemRooms(BuildContext context, int index) {
     //horizontal
     if (index == roomdata.length) {
       return const Center(
         child: //CircularProgressIndicator(),
-        Text(''),
+            Text(''),
       );
     }
     return SizedBox(
@@ -204,6 +179,7 @@ class _lightButtonScreenState extends State<lightButtonScreen> {
       ),
     );
   }
+
   Widget _buildListItemFloors(BuildContext context, int index) {
     //horizontal
     if (index == floordata.length) {
@@ -235,25 +211,21 @@ class _lightButtonScreenState extends State<lightButtonScreen> {
     );
   }
 
-  //center light on off icon variable
-  Image light_on_off = Image.network(
-      'https://github.com/XxExecut0rxX/Final_Project_Domotic/blob/master/assets/Images/lightsicon/lightson.png?raw=true');
 
   void _onItemFocusRooms(int index) {
     _focusedIndexRooms = index;
-    updateSwitchToggler(_focusedIndexRooms, _focusedIndexFloors);
-    updateInitialSlider(_focusedIndexRooms, _focusedIndexFloors);
     updateInitialTemp(_focusedIndexRooms, _focusedIndexFloors);
   }
   void _onItemFocusFloors(int index) {
     _focusedIndexFloors = index;
-    updateSwitchToggler(_focusedIndexRooms, _focusedIndexFloors);
-    updateInitialSlider(_focusedIndexRooms, _focusedIndexFloors);
     updateInitialTemp(_focusedIndexRooms, _focusedIndexFloors);
     InitRoomsFloors(_focusedIndexFloors);
   }
+  
+  //fan button value
+  Color fanBackColor = Colors.white;
+  Color iconColor = Colors.black;
 
-  //main widget
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -264,35 +236,32 @@ class _lightButtonScreenState extends State<lightButtonScreen> {
           const SizedBox(
             height: 10,
           ),
+          
           //stats bar
           Container(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Row(
-                  children: [
-                    Text(
-                      "$humidity%",
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontFamily: "Poppins",
-                        fontWeight: FontWeight.w900,
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10.0,
-                    ),
-                    const Icon(
-                      Icons.opacity_outlined,
+                Row(children: [
+                  Text(
+                    "$humidity%",
+                    style: const TextStyle(
                       color: Colors.white,
+                      fontSize: 20,
+                      fontFamily: "Poppins",
+                      fontWeight: FontWeight.w900,
                     ),
-                  ],
-                ),
+                  ),
+                  const SizedBox(width: 10.0,),
+                  const Icon(
+                    Icons.opacity_outlined,
+                    color: Colors.white,
+                  ),
+                ],),
                 Row(
                   children: [
                     Text(
-                      "$temperature°C",
+                      "${brightness.round()}°C",
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 20,
@@ -331,100 +300,70 @@ class _lightButtonScreenState extends State<lightButtonScreen> {
                 ),
               ],
             ),
-            margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+            margin: const EdgeInsets.symmetric(horizontal: 30,vertical: 10),
             height: 50,
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
               border: Border.all(
                 width: 1,
-                color: Colors.blue.shade200,
+                color: Colors.orange.shade400,
               ),
               borderRadius: BorderRadius.circular(
                 8,
               ),
               boxShadow: const [
                 BoxShadow(
-                  color: Color(0x11108ec5),
-                  blurRadius: 2.40,
-                  offset: Offset(0, 1.49),
-                ),
-                BoxShadow(
-                  color: Color(0x19108ec5),
+                  color: Color(0x19fc6628),
                   blurRadius: 6.64,
                   offset: Offset(0, 4.13),
                 ),
                 BoxShadow(
-                  color: Color(0x21108ec5),
+                  color: Color(0x21fc6628),
                   blurRadius: 15.98,
                   offset: Offset(0, 9.95),
                 ),
                 BoxShadow(
-                  color: Color(0x33108ec5),
+                  color: Color(0x33fc6628),
                   blurRadius: 53,
                   offset: Offset(0, 33),
                 ),
               ],
-              gradient: const LinearGradient(
+              gradient:  const LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                colors: [Color(0xff077cbe), Color(0x0017a1cd)],
+                colors: [
+                  Color(0xffff5620), 
+                  Color(0x00f8772e)
+                ],
               ),
             ),
           ),
 
+          const SizedBox(
+            height: 20,
+          ),
           //slider bar
           Stack(
               clipBehavior: Clip.none,
               alignment: AlignmentDirectional.center,
               children: [
                 const Positioned(
-                  child: Text('0%'),
+                  child: Text('0°C'),
                   bottom: 50,
                   left: 1,
                 ),
                 const Positioned(
-                  child: Text('100%'),
+                  child: Text('70°C'),
                   bottom: 50,
                   right: -10,
                 ),
                 const Positioned(
-                  child: Text('Brightness'),
+                  child: Text('Temperature level'),
                   bottom: 10,
                 ),
-                //slider
-                SleekCircularSlider(
-                    initialValue: brightness,
-                    appearance: CircularSliderAppearance(
-                      infoProperties: InfoProperties(
-                        mainLabelStyle: const TextStyle(
-                          color: Colors.transparent,
-                        ),
-                      ),
-                      size: 300,
-                      customColors: CustomSliderColors(
-                        hideShadow: true,
-                        shadowMaxOpacity: 0.2,
-                        shadowStep: 30,
-                        trackColor: Colors.blue.shade900,
-                        dotColor: Colors.grey.shade200,
-                        progressBarColor: Colors.blue.shade300,
-                      ),
-                      customWidths: CustomSliderWidths(
-                        trackWidth: 4,
-                        handlerSize: 20,
-                      ),
-                    ),
-                    onChange: (value) {
-                      brightness = value;
-                      updateSlider(_focusedIndexRooms, value, _focusedIndexFloors);
-                    }),
                 Positioned(
                   top: 50,
                   child: Container(
-                    child: Padding(
-                      padding: const EdgeInsets.all(30.0),
-                      child: light_on_off,
-                    ),
                     width: 200,
                     height: 200,
                     decoration: BoxDecoration(
@@ -441,31 +380,72 @@ class _lightButtonScreenState extends State<lightButtonScreen> {
                     ),
                   ),
                 ),
+                //slider
+                SleekCircularSlider(
+                    min: 0,
+                    max: 70,
+                    initialValue: brightness,
+                    appearance: CircularSliderAppearance(
+                      infoProperties: InfoProperties(
+
+                        modifier: (value) {
+                          final roundedValue = value.ceil().toInt().toString();
+                          return '$roundedValue °C';
+                        },
+                        mainLabelStyle: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 40,
+                        ),
+                      ),
+                      size: 300,
+                      customColors: CustomSliderColors(
+                        hideShadow: true,
+                        shadowMaxOpacity: 0.2,
+                        shadowStep: 30,
+                        trackColor: Colors.orange.shade900,
+                        dotColor: Colors.white,
+                        progressBarColors: [
+                          Colors.deepOrange.shade600,
+                          Colors.orange.shade200,
+                          Colors.orange.shade50,
+                          ],
+                      ),
+                      customWidths: CustomSliderWidths(
+                        trackWidth: 4,
+                        handlerSize: 7,
+                      ),
+                    ),
+                    /*onChange: (value) {
+                        brightness = value;
+                        updateSlider(_focusedIndexRooms, value, _focusedIndexFloors);
+                      }*/
+                    ),
+                
               ]),
-          const SizedBox(height: 20,),
-          //switch
-          FlutterSwitch(
-            width: 110.0,
-            height: 55.0,
-            valueFontSize: 25.0,
-            toggleSize: 50.0,
-            value: switchtoggle,
-            borderRadius: 30.0,
-            padding: 5.0,
-            activeText: 'On',
-            inactiveText: 'Off',
-            showOnOff: true,
-            activeColor: Colors.blue.shade300,
-            inactiveColor: Colors.black12,
-            onToggle: (val) {
+          const SizedBox(height: 10,),
+          OutlinedButton(
+            child: const Icon(Icons.auto_awesome,size: 10,),
+            style: ButtonStyle(
+              fixedSize: MaterialStateProperty.all(const Size(40, 40)),
+              side: MaterialStateProperty.all(const BorderSide(width: 1)),
+              backgroundColor: MaterialStateProperty.all(fanBackColor),
+              foregroundColor: MaterialStateProperty.all(iconColor),
+            ),
+            onPressed: (){
               setState(() {
-                status = val;
-                updateDataonToggleSwitch(
-                    status, _focusedIndexRooms, _focusedIndexFloors);
+                if(fanBackColor == Colors.red) {
+                  fanBackColor = Colors.white;
+                  iconColor = Colors.black;
+                } else {
+                  fanBackColor = Colors.red;
+                  iconColor = Colors.white;
+                }
               });
-            },
+            }, 
+            //icon: Icon(Icons.add), 
+            //label: Text(''),
           ),
-          const SizedBox(height: 30,),
+          const SizedBox(height: 5,),
           //scrollsnaplist rooms
           Expanded(
             child: Stack(children: [
@@ -478,7 +458,7 @@ class _lightButtonScreenState extends State<lightButtonScreen> {
                       borderRadius: BorderRadius.circular(20),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.blue.shade200.withOpacity(0.5),
+                          color: Colors.orange.shade200.withOpacity(0.5),
                           spreadRadius: 1,
                           blurRadius: 4,
                           offset: const Offset(2, 4),
@@ -510,7 +490,7 @@ class _lightButtonScreenState extends State<lightButtonScreen> {
                       borderRadius: BorderRadius.circular(20),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.blue.shade800.withOpacity(0.5),
+                          color: Colors.orange.shade800.withOpacity(0.5),
                           spreadRadius: 1,
                           blurRadius: 4,
                           offset: const Offset(2, 4),
