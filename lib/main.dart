@@ -1,5 +1,6 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
+import 'package:pro_final/home/cards/button_humidity_screen/button_humidity_screen.dart';
 import 'package:pro_final/home/cards/button_lights_screen/button_light_screen.dart';
 import 'package:pro_final/home/cards/button_temperature_screen/button_temp_screen.dart';
 import 'package:pro_final/home/main_home.dart';
@@ -37,7 +38,7 @@ class _MyAppState extends State<MyApp> {
       ),
       home: Scaffold(
         backgroundColor: Colors.white,
-        body: const lightButtonScreen(),
+        body: const ButtonHumidityScreen(),
             //pageList[pageIndex],
             /*PageTransitionSwitcher(
               transitionBuilder: (child, primaryAnimation, secondaryAnimation) => 

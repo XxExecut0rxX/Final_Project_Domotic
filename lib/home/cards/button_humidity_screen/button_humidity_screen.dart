@@ -1,21 +1,17 @@
-// ignore_for_file: camel_case_types
-
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_switch/flutter_switch.dart';
 import 'package:scroll_snap_list/scroll_snap_list.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
-class buttonTempScreen extends StatefulWidget {
-  const buttonTempScreen({ Key? key }) : super(key: key);
+class ButtonHumidityScreen extends StatefulWidget {
+  const ButtonHumidityScreen({Key? key}) : super(key: key);
 
   @override
-  _buttonTempScreenState createState() => _buttonTempScreenState();
+  _ButtonHumidityScreenState createState() => _ButtonHumidityScreenState();
 }
 
-class _buttonTempScreenState extends State<buttonTempScreen> {
-  
+class _ButtonHumidityScreenState extends State<ButtonHumidityScreen> {
   // ignore: slash_for_doc_comments
   /***********FIREBASE IMPLEMENTATION**********/
   final db = FirebaseDatabase.instance.reference();
@@ -50,7 +46,7 @@ class _buttonTempScreenState extends State<buttonTempScreen> {
       setState(() {
         if (_displ == 'on') {
           switchtoggle = true;
-          } else {
+        } else {
           switchtoggle = false;
         }
       });
@@ -60,7 +56,6 @@ class _buttonTempScreenState extends State<buttonTempScreen> {
   //slider brightness updates
   double brightness = 0;
   int humidity = 0;
-
 
   void updateInitialTemp(int index, int index1) {
     index += 1;
@@ -74,7 +69,6 @@ class _buttonTempScreenState extends State<buttonTempScreen> {
       final int desc = event.snapshot.value;
       setState(() {
         brightness = desc.toDouble();
-
       });
     });
     //humidity
@@ -211,23 +205,21 @@ class _buttonTempScreenState extends State<buttonTempScreen> {
     );
   }
 
-
   void _onItemFocusRooms(int index) {
     _focusedIndexRooms = index;
     updateInitialTemp(_focusedIndexRooms, _focusedIndexFloors);
   }
+
   void _onItemFocusFloors(int index) {
     _focusedIndexFloors = index;
     updateInitialTemp(_focusedIndexRooms, _focusedIndexFloors);
     InitRoomsFloors(_focusedIndexFloors);
   }
-  
+
   //fan button value
   Color fanBackColor = Colors.white;
   Color iconColor = Colors.black;
 
-
-  //main widget
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -238,28 +230,32 @@ class _buttonTempScreenState extends State<buttonTempScreen> {
           const SizedBox(
             height: 10,
           ),
-          
+
           //stats bar
           Container(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Row(children: [
-                  Text(
-                    "$humidity%",
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontFamily: "Poppins",
-                      fontWeight: FontWeight.w900,
+                Row(
+                  children: [
+                    Text(
+                      "$humidity%",
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontFamily: "Poppins",
+                        fontWeight: FontWeight.w900,
+                      ),
                     ),
-                  ),
-                  const SizedBox(width: 10.0,),
-                  const Icon(
-                    Icons.opacity_outlined,
-                    color: Colors.white,
-                  ),
-                ],),
+                    const SizedBox(
+                      width: 10.0,
+                    ),
+                    const Icon(
+                      Icons.opacity_outlined,
+                      color: Colors.white,
+                    ),
+                  ],
+                ),
                 Row(
                   children: [
                     Text(
@@ -302,41 +298,43 @@ class _buttonTempScreenState extends State<buttonTempScreen> {
                 ),
               ],
             ),
-            margin: const EdgeInsets.symmetric(horizontal: 30,vertical: 10),
+            margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
             height: 50,
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
               border: Border.all(
                 width: 1,
-                color: Colors.orange.shade400,
+                color: Colors.green.shade300,
               ),
               borderRadius: BorderRadius.circular(
                 8,
               ),
               boxShadow: const [
                 BoxShadow(
-                  color: Color(0x19fc6628),
+                  color: Color(0x1119c281),
+                  blurRadius: 2.40,
+                  offset: Offset(0, 1.49),
+                ),
+                BoxShadow(
+                  color: Color(0x1919c281),
                   blurRadius: 6.64,
                   offset: Offset(0, 4.13),
                 ),
                 BoxShadow(
-                  color: Color(0x21fc6628),
+                  color: Color(0x2119c281),
                   blurRadius: 15.98,
                   offset: Offset(0, 9.95),
                 ),
                 BoxShadow(
-                  color: Color(0x33fc6628),
+                  color: Color(0x3319c281),
                   blurRadius: 53,
                   offset: Offset(0, 33),
                 ),
               ],
-              gradient:  const LinearGradient(
+              gradient: const LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                colors: [
-                  Color(0xffff5620), 
-                  Color(0x00f8772e)
-                ],
+                colors: [Color(0xff16bf82), Color(0x001cc47e)],
               ),
             ),
           ),
@@ -355,12 +353,12 @@ class _buttonTempScreenState extends State<buttonTempScreen> {
                   left: 1,
                 ),
                 const Positioned(
-                  child: Text('70°C'),
+                  child: Text('100°C'),
                   bottom: 50,
                   right: -10,
                 ),
                 const Positioned(
-                  child: Text('Temperature level'),
+                  child: Text('Humidity level'),
                   bottom: 10,
                 ),
                 Positioned(
@@ -384,58 +382,60 @@ class _buttonTempScreenState extends State<buttonTempScreen> {
                 ),
                 //slider
                 SleekCircularSlider(
-                    min: 0,
-                    max: 70,
-                    initialValue: brightness,
-                    appearance: CircularSliderAppearance(
-                      infoProperties: InfoProperties(
-
-                        modifier: (value) {
-                          final roundedValue = value.ceil().toInt().toString();
-                          return '$roundedValue °C';
-                        },
-                        mainLabelStyle: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 40,
-                        ),
-                      ),
-                      size: 300,
-                      customColors: CustomSliderColors(
-                        hideShadow: true,
-                        shadowMaxOpacity: 0.2,
-                        shadowStep: 30,
-                        trackColor: Colors.orange.shade900,
-                        dotColor: Colors.white,
-                        progressBarColors: [
-                          Colors.deepOrange.shade600,
-                          Colors.orange.shade200,
-                          Colors.orange.shade50,
-                          ],
-                      ),
-                      customWidths: CustomSliderWidths(
-                        trackWidth: 4,
-                        handlerSize: 7,
+                  min: 0,
+                  max: 100,
+                  initialValue: humidity.toDouble(),
+                  appearance: CircularSliderAppearance(
+                    infoProperties: InfoProperties(
+                      modifier: (value) {
+                        final roundedValue = value.ceil().toInt().toString();
+                        return '$roundedValue %';
+                      },
+                      mainLabelStyle: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 40,
                       ),
                     ),
-                    /*onChange: (value) {
+                    size: 300,
+                    customColors: CustomSliderColors(
+                      hideShadow: true,
+                      shadowMaxOpacity: 0.2,
+                      shadowStep: 30,
+                      trackColor: Colors.green.shade900,
+                      dotColor: Colors.white,
+                      progressBarColors: [
+                        Colors.greenAccent.shade400,
+                        Colors.greenAccent.shade100,
+                      ],
+                    ),
+                    customWidths: CustomSliderWidths(
+                      trackWidth: 4,
+                      handlerSize: 7,
+                    ),
+                  ),
+                  /*onChange: (value) {
                         brightness = value;
                         updateSlider(_focusedIndexRooms, value, _focusedIndexFloors);
                       }*/
-                    ),
-                
+                ),
               ]),
-          const SizedBox(height: 10,),
+          const SizedBox(
+            height: 10,
+          ),
           OutlinedButton(
-            child: const Icon(Icons.auto_awesome,size: 10,),
+            child: const Icon(
+              Icons.auto_awesome,
+              size: 10,
+            ),
             style: ButtonStyle(
               fixedSize: MaterialStateProperty.all(const Size(40, 40)),
               side: MaterialStateProperty.all(const BorderSide(width: 1)),
               backgroundColor: MaterialStateProperty.all(fanBackColor),
               foregroundColor: MaterialStateProperty.all(iconColor),
             ),
-            onPressed: (){
+            onPressed: () {
               setState(() {
-                if(fanBackColor == Colors.red) {
+                if (fanBackColor == Colors.red) {
                   fanBackColor = Colors.white;
                   iconColor = Colors.black;
                 } else {
@@ -443,11 +443,13 @@ class _buttonTempScreenState extends State<buttonTempScreen> {
                   iconColor = Colors.white;
                 }
               });
-            }, 
-            //icon: Icon(Icons.add), 
+            },
+            //icon: Icon(Icons.add),
             //label: Text(''),
           ),
-          const SizedBox(height: 5,),
+          const SizedBox(
+            height: 5,
+          ),
           //scrollsnaplist rooms
           Expanded(
             child: Stack(children: [
@@ -460,7 +462,7 @@ class _buttonTempScreenState extends State<buttonTempScreen> {
                       borderRadius: BorderRadius.circular(20),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.orange.shade200.withOpacity(0.5),
+                          color: Colors.green.shade200.withOpacity(0.5),
                           spreadRadius: 1,
                           blurRadius: 4,
                           offset: const Offset(2, 4),
@@ -492,7 +494,7 @@ class _buttonTempScreenState extends State<buttonTempScreen> {
                       borderRadius: BorderRadius.circular(20),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.orange.shade800.withOpacity(0.5),
+                          color: Colors.green.shade800.withOpacity(0.5),
                           spreadRadius: 1,
                           blurRadius: 4,
                           offset: const Offset(2, 4),
