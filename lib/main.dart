@@ -10,11 +10,11 @@ import 'package:pro_final/home/list_screen/list_Screen.dart';
 import 'package:titled_navigation_bar/titled_navigation_bar.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
-  MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -38,9 +38,9 @@ class _MyAppState extends State<MyApp> {
       ),
       home: Scaffold(
         backgroundColor: Colors.white,
-        body: const ButtonHumidityScreen(),
+        body: 
             //pageList[pageIndex],
-            /*PageTransitionSwitcher(
+            PageTransitionSwitcher(
               transitionBuilder: (child, primaryAnimation, secondaryAnimation) => 
               FadeThroughTransition(
                 animation: primaryAnimation, 
@@ -49,7 +49,7 @@ class _MyAppState extends State<MyApp> {
                 child: child,
                 ),
                 child: pageList[pageIndex],
-              ),*/
+              ),
         bottomNavigationBar: TitledBottomNavigationBar(
           activeColor: const Color(0xFF33E1EC),
           inactiveColor: Colors.black45,

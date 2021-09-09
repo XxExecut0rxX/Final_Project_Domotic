@@ -4,6 +4,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
+import 'package:pro_final/main.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 import 'package:scroll_snap_list/scroll_snap_list.dart';
 
@@ -129,27 +130,6 @@ class _lightButtonScreenState extends State<lightButtonScreen> {
   }
   ////////////////////////////////////////////
 
-  final bar = Row(
-    mainAxisAlignment: MainAxisAlignment.start,
-    children: [
-      const SizedBox(
-        width: 10,
-      ),
-      TextButton(
-        onPressed: () {},
-        child: Row(
-          children: const [
-            Icon(Icons.arrow_back_ios),
-            Text('Back'),
-          ],
-        ),
-      ),
-      const SizedBox(
-        width: 95,
-      ),
-      const Text('Lights'),
-    ],
-  );
 
   bool status = true;
 
@@ -256,283 +236,312 @@ class _lightButtonScreenState extends State<lightButtonScreen> {
   //main widget
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          bar,
-          const SizedBox(
-            height: 10,
-          ),
-          //stats bar
-          Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            //bar
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Row(
-                  children: [
-                    Text(
-                      "$humidity%",
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontFamily: "Poppins",
-                        fontWeight: FontWeight.w900,
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10.0,
-                    ),
-                    const Icon(
-                      Icons.opacity_outlined,
-                      color: Colors.white,
-                    ),
-                  ],
+                const SizedBox(
+                  width: 10,
                 ),
-                Row(
-                  children: [
-                    Text(
-                      "$temperature°C",
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontFamily: "Poppins",
-                        fontWeight: FontWeight.w900,
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 1.0,
-                    ),
-                    const Icon(
-                      Icons.thermostat_outlined,
-                      color: Colors.white,
-                    ),
-                  ],
-                ),
-                Row(
-                  children: const [
-                    Text(
-                      "Normal",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontFamily: "Poppins",
-                        fontWeight: FontWeight.w900,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 10.0,
-                    ),
-                    Icon(
-                      CupertinoIcons.bolt,
-                      color: Colors.white,
-                    )
-                  ],
-                ),
-              ],
-            ),
-            margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-            height: 50,
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-              border: Border.all(
-                width: 1,
-                color: Colors.blue.shade200,
-              ),
-              borderRadius: BorderRadius.circular(
-                8,
-              ),
-              boxShadow: const [
-                BoxShadow(
-                  color: Color(0x11108ec5),
-                  blurRadius: 2.40,
-                  offset: Offset(0, 1.49),
-                ),
-                BoxShadow(
-                  color: Color(0x19108ec5),
-                  blurRadius: 6.64,
-                  offset: Offset(0, 4.13),
-                ),
-                BoxShadow(
-                  color: Color(0x21108ec5),
-                  blurRadius: 15.98,
-                  offset: Offset(0, 9.95),
-                ),
-                BoxShadow(
-                  color: Color(0x33108ec5),
-                  blurRadius: 53,
-                  offset: Offset(0, 33),
-                ),
-              ],
-              gradient: const LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [Color(0xff077cbe), Color(0x0017a1cd)],
-              ),
-            ),
-          ),
-
-          //slider bar
-          Stack(
-              clipBehavior: Clip.none,
-              alignment: AlignmentDirectional.center,
-              children: [
-                const Positioned(
-                  child: Text('0%'),
-                  bottom: 50,
-                  left: 1,
-                ),
-                const Positioned(
-                  child: Text('100%'),
-                  bottom: 50,
-                  right: -10,
-                ),
-                const Positioned(
-                  child: Text('Brightness'),
-                  bottom: 10,
-                ),
-                //slider
-                SleekCircularSlider(
-                    initialValue: brightness,
-                    appearance: CircularSliderAppearance(
-                      infoProperties: InfoProperties(
-                        mainLabelStyle: const TextStyle(
-                          color: Colors.transparent,
-                        ),
-                      ),
-                      size: 300,
-                      customColors: CustomSliderColors(
-                        hideShadow: true,
-                        shadowMaxOpacity: 0.2,
-                        shadowStep: 30,
-                        trackColor: Colors.blue.shade900,
-                        dotColor: Colors.grey.shade200,
-                        progressBarColor: Colors.blue.shade300,
-                      ),
-                      customWidths: CustomSliderWidths(
-                        trackWidth: 4,
-                        handlerSize: 20,
-                      ),
-                    ),
-                    onChange: (value) {
-                      brightness = value;
-                      updateSlider(_focusedIndexRooms, value, _focusedIndexFloors);
-                    }),
-                Positioned(
-                  top: 50,
-                  child: Container(
-                    child: Padding(
-                      padding: const EdgeInsets.all(30.0),
-                      child: light_on_off,
-                    ),
-                    width: 200,
-                    height: 200,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(100),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 1,
-                          blurRadius: 4,
-                          offset: const Offset(2, 4),
-                        ),
-                      ],
-                    ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const MyApp()));
+                  },
+                  child: Row(
+                    children: const [
+                      Icon(Icons.arrow_back_ios),
+                      Text('Back'),
+                    ],
                   ),
                 ),
-              ]),
-          const SizedBox(height: 20,),
-          //switch
-          FlutterSwitch(
-            width: 110.0,
-            height: 55.0,
-            valueFontSize: 25.0,
-            toggleSize: 50.0,
-            value: switchtoggle,
-            borderRadius: 30.0,
-            padding: 5.0,
-            activeText: 'On',
-            inactiveText: 'Off',
-            showOnOff: true,
-            activeColor: Colors.blue.shade300,
-            inactiveColor: Colors.black12,
-            onToggle: (val) {
-              setState(() {
-                status = val;
-                updateDataonToggleSwitch(
-                    status, _focusedIndexRooms, _focusedIndexFloors);
-              });
-            },
-          ),
-          const SizedBox(height: 30,),
-          //scrollsnaplist rooms
-          Expanded(
-            child: Stack(children: [
-              Center(
-                child: Container(
-                  width: 90,
-                  height: 45,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.blue.shade200.withOpacity(0.5),
-                          spreadRadius: 1,
-                          blurRadius: 4,
-                          offset: const Offset(2, 4),
-                        ),
-                      ]),
+                const SizedBox(
+                  width: 95,
                 ),
-              ),
-              ScrollSnapList(
-                onItemFocus: _onItemFocusRooms,
-                itemSize: 140,
-                dynamicItemSize: true,
-                itemBuilder: _buildListItemRooms,
-                itemCount: nRooms,
-                reverse: false,
-              ),
-            ]),
-          ),
-          const SizedBox(
-            height: 10,
-          ), //scrollsnaplist floors
-          Expanded(
-            child: Stack(children: [
-              Center(
-                child: Container(
-                  width: 70,
-                  height: 35,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.blue.shade800.withOpacity(0.5),
-                          spreadRadius: 1,
-                          blurRadius: 4,
-                          offset: const Offset(2, 4),
-                        ),
-                      ]),
-                ),
-              ),
-              ScrollSnapList(
-                onItemFocus: _onItemFocusFloors,
-                itemSize: 140,
-                dynamicItemSize: true,
-                itemBuilder: _buildListItemFloors,
-                itemCount: floordata.length,
-                reverse: false,
-              ),
-            ]),
-          ),
+                const Text('Lights'),
+              ],
+            ),
+            const SizedBox(
+              height: 10,
+            ),
 
-          const SizedBox(
-            height: 30,
-          ),
-        ],
+            //stats bar
+            Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        "$humidity%",
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontFamily: "Poppins",
+                          fontWeight: FontWeight.w900,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10.0,
+                      ),
+                      const Icon(
+                        Icons.opacity_outlined,
+                        color: Colors.white,
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        "$temperature°C",
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontFamily: "Poppins",
+                          fontWeight: FontWeight.w900,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 1.0,
+                      ),
+                      const Icon(
+                        Icons.thermostat_outlined,
+                        color: Colors.white,
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: const [
+                      Text(
+                        "Normal",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontFamily: "Poppins",
+                          fontWeight: FontWeight.w900,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10.0,
+                      ),
+                      Icon(
+                        CupertinoIcons.bolt,
+                        color: Colors.white,
+                      )
+                    ],
+                  ),
+                ],
+              ),
+              margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+              height: 50,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  width: 1,
+                  color: Colors.blue.shade200,
+                ),
+                borderRadius: BorderRadius.circular(
+                  8,
+                ),
+                boxShadow: const [
+                  BoxShadow(
+                    color: Color(0x11108ec5),
+                    blurRadius: 2.40,
+                    offset: Offset(0, 1.49),
+                  ),
+                  BoxShadow(
+                    color: Color(0x19108ec5),
+                    blurRadius: 6.64,
+                    offset: Offset(0, 4.13),
+                  ),
+                  BoxShadow(
+                    color: Color(0x21108ec5),
+                    blurRadius: 15.98,
+                    offset: Offset(0, 9.95),
+                  ),
+                  BoxShadow(
+                    color: Color(0x33108ec5),
+                    blurRadius: 53,
+                    offset: Offset(0, 33),
+                  ),
+                ],
+                gradient: const LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [Color(0xff077cbe), Color(0x0017a1cd)],
+                ),
+              ),
+            ),
+    
+            //slider bar
+            Stack(
+                clipBehavior: Clip.none,
+                alignment: AlignmentDirectional.center,
+                children: [
+                  const Positioned(
+                    child: Text('0%'),
+                    bottom: 50,
+                    left: 1,
+                  ),
+                  const Positioned(
+                    child: Text('100%'),
+                    bottom: 50,
+                    right: -10,
+                  ),
+                  const Positioned(
+                    child: Text('Brightness'),
+                    bottom: 10,
+                  ),
+                  //slider
+                  SleekCircularSlider(
+                      initialValue: brightness,
+                      appearance: CircularSliderAppearance(
+                        infoProperties: InfoProperties(
+                          mainLabelStyle: const TextStyle(
+                            color: Colors.transparent,
+                          ),
+                        ),
+                        size: 300,
+                        customColors: CustomSliderColors(
+                          hideShadow: true,
+                          shadowMaxOpacity: 0.2,
+                          shadowStep: 30,
+                          trackColor: Colors.blue.shade900,
+                          dotColor: Colors.grey.shade200,
+                          progressBarColor: Colors.blue.shade300,
+                        ),
+                        customWidths: CustomSliderWidths(
+                          trackWidth: 4,
+                          handlerSize: 20,
+                        ),
+                      ),
+                      onChange: (value) {
+                        brightness = value;
+                        updateSlider(_focusedIndexRooms, value, _focusedIndexFloors);
+                      }),
+                  Positioned(
+                    top: 50,
+                    child: Container(
+                      child: Padding(
+                        padding: const EdgeInsets.all(30.0),
+                        child: light_on_off,
+                      ),
+                      width: 200,
+                      height: 200,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(100),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 1,
+                            blurRadius: 4,
+                            offset: const Offset(2, 4),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ]),
+            const SizedBox(height: 20,),
+            //switch
+            FlutterSwitch(
+              width: 110.0,
+              height: 55.0,
+              valueFontSize: 25.0,
+              toggleSize: 50.0,
+              value: switchtoggle,
+              borderRadius: 30.0,
+              padding: 5.0,
+              activeText: 'On',
+              inactiveText: 'Off',
+              showOnOff: true,
+              activeColor: Colors.blue.shade300,
+              inactiveColor: Colors.black12,
+              onToggle: (val) {
+                setState(() {
+                  status = val;
+                  updateDataonToggleSwitch(
+                      status, _focusedIndexRooms, _focusedIndexFloors);
+                });
+              },
+            ),
+            const SizedBox(height: 30,),
+            //scrollsnaplist rooms
+            Expanded(
+              child: Stack(children: [
+                Center(
+                  child: Container(
+                    width: 90,
+                    height: 45,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.blue.shade200.withOpacity(0.5),
+                            spreadRadius: 1,
+                            blurRadius: 4,
+                            offset: const Offset(2, 4),
+                          ),
+                        ]),
+                  ),
+                ),
+                ScrollSnapList(
+                  onItemFocus: _onItemFocusRooms,
+                  itemSize: 140,
+                  dynamicItemSize: true,
+                  itemBuilder: _buildListItemRooms,
+                  itemCount: nRooms,
+                  reverse: false,
+                ),
+              ]),
+            ),
+            const SizedBox(
+              height: 10,
+            ), //scrollsnaplist floors
+            Expanded(
+              child: Stack(children: [
+                Center(
+                  child: Container(
+                    width: 70,
+                    height: 35,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.blue.shade800.withOpacity(0.5),
+                            spreadRadius: 1,
+                            blurRadius: 4,
+                            offset: const Offset(2, 4),
+                          ),
+                        ]),
+                  ),
+                ),
+                ScrollSnapList(
+                  onItemFocus: _onItemFocusFloors,
+                  itemSize: 140,
+                  dynamicItemSize: true,
+                  itemBuilder: _buildListItemFloors,
+                  itemCount: floordata.length,
+                  reverse: false,
+                ),
+              ]),
+            ),
+    
+            const SizedBox(
+              height: 30,
+            ),
+          ],
+        ),
       ),
     );
   }

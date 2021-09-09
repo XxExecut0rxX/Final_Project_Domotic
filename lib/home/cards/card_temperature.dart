@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:pro_final/home/cards/button_temperature_screen/button_temp_screen.dart';
 
 class CardTemperature extends StatefulWidget {
   const CardTemperature({ Key? key }) : super(key: key);
@@ -66,47 +67,53 @@ class _CardTemperatureState extends State<CardTemperature> {
       ],
     );
 
-    return Container(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 20,
-          vertical: 25,
+    return GestureDetector(
+      onTap: (){
+        Navigator.push(
+          context, MaterialPageRoute(builder: (context) => const buttonTempScreen()));
+      },
+      child: Container(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 20,
+            vertical: 25,
+          ),
+          child: textTemp,
         ),
-        child: textTemp,
-      ),
-      width: 156,
-      height: 259,
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.orange.shade400,),
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: const [
-          BoxShadow(
-            color: Color(0x11fc6628),
-            blurRadius: 2.40,
-            offset: Offset(0, 1.49),
+        width: 156,
+        height: 259,
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.orange.shade400,),
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: const [
+            BoxShadow(
+              color: Color(0x11fc6628),
+              blurRadius: 2.40,
+              offset: Offset(0, 1.49),
+            ),
+            BoxShadow(
+              color: Color(0x19fc6628),
+              blurRadius: 6.64,
+              offset: Offset(0, 4.13),
+            ),
+            BoxShadow(
+              color: Color(0x21fc6628),
+              blurRadius: 15.98,
+              offset: Offset(0, 9.95),
+            ),
+            BoxShadow(
+              color: Color(0x33fc6628),
+              blurRadius: 53,
+              offset: Offset(0, 33),
+            ),
+          ],
+          gradient: const LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Color(0xffff5620), 
+              Color(0x00f8772e)],
           ),
-          BoxShadow(
-            color: Color(0x19fc6628),
-            blurRadius: 6.64,
-            offset: Offset(0, 4.13),
-          ),
-          BoxShadow(
-            color: Color(0x21fc6628),
-            blurRadius: 15.98,
-            offset: Offset(0, 9.95),
-          ),
-          BoxShadow(
-            color: Color(0x33fc6628),
-            blurRadius: 53,
-            offset: Offset(0, 33),
-          ),
-        ],
-        gradient: const LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Color(0xffff5620), 
-            Color(0x00f8772e)],
         ),
       ),
     );

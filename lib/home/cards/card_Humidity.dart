@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:pro_final/home/cards/button_humidity_screen/button_humidity_screen.dart';
 
 class CardHumidity extends StatefulWidget {
   const CardHumidity({ Key? key }) : super(key: key);
@@ -74,45 +75,51 @@ class CardHumidityState extends State<CardHumidity> {
       ],
     );
     
-    return Container(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 20,
-          vertical: 25,
+    return GestureDetector(
+      onTap: (){
+        Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const ButtonHumidityScreen()));
+      },
+      child: Container(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 20,
+            vertical: 25,
+            ),
+          child: textHumidity,
+        ),
+        width: 156,
+        height: 261,
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.green.shade300),
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: const [
+            BoxShadow(
+              color: Color(0x1119c281),
+              blurRadius: 2.40,
+              offset: Offset(0, 1.49),
+            ),
+            BoxShadow(
+              color: Color(0x1919c281),
+              blurRadius: 6.64,
+              offset: Offset(0, 4.13),
+            ),
+            BoxShadow(
+              color: Color(0x2119c281),
+              blurRadius: 15.98,
+              offset: Offset(0, 9.95),
+            ),
+            BoxShadow(
+              color: Color(0x3319c281),
+              blurRadius: 53,
+              offset: Offset(0, 33),
+            ),
+          ],
+          gradient: const LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [Color(0xff16bf82), Color(0x001cc47e)],
           ),
-        child: textHumidity,
-      ),
-      width: 156,
-      height: 261,
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.green.shade300),
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: const [
-          BoxShadow(
-            color: Color(0x1119c281),
-            blurRadius: 2.40,
-            offset: Offset(0, 1.49),
-          ),
-          BoxShadow(
-            color: Color(0x1919c281),
-            blurRadius: 6.64,
-            offset: Offset(0, 4.13),
-          ),
-          BoxShadow(
-            color: Color(0x2119c281),
-            blurRadius: 15.98,
-            offset: Offset(0, 9.95),
-          ),
-          BoxShadow(
-            color: Color(0x3319c281),
-            blurRadius: 53,
-            offset: Offset(0, 33),
-          ),
-        ],
-        gradient: const LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [Color(0xff16bf82), Color(0x001cc47e)],
         ),
       ),
     );

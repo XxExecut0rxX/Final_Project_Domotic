@@ -7,6 +7,8 @@ import 'package:flutter_switch/flutter_switch.dart';
 import 'package:scroll_snap_list/scroll_snap_list.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
+import '../../../main.dart';
+
 class buttonTempScreen extends StatefulWidget {
   const buttonTempScreen({ Key? key }) : super(key: key);
 
@@ -104,27 +106,6 @@ class _buttonTempScreenState extends State<buttonTempScreen> {
   }
   ////////////////////////////////////////////
 
-  final bar = Row(
-    mainAxisAlignment: MainAxisAlignment.start,
-    children: [
-      const SizedBox(
-        width: 10,
-      ),
-      TextButton(
-        onPressed: () {},
-        child: Row(
-          children: const [
-            Icon(Icons.arrow_back_ios),
-            Text('Back'),
-          ],
-        ),
-      ),
-      const SizedBox(
-        width: 95,
-      ),
-      const Text('Lights'),
-    ],
-  );
 
   bool status = true;
 
@@ -230,40 +211,48 @@ class _buttonTempScreenState extends State<buttonTempScreen> {
   //main widget
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          bar,
-          const SizedBox(
-            height: 10,
-          ),
-          
-          //stats bar
-          Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            //bar
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Row(children: [
-                  Text(
-                    "$humidity%",
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontFamily: "Poppins",
-                      fontWeight: FontWeight.w900,
-                    ),
+                const SizedBox(
+                  width: 10,
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => const MyApp()));
+                  },
+                  child: Row(
+                    children: const [
+                      Icon(Icons.arrow_back_ios),
+                      Text('Back'),
+                    ],
                   ),
-                  const SizedBox(width: 10.0,),
-                  const Icon(
-                    Icons.opacity_outlined,
-                    color: Colors.white,
-                  ),
-                ],),
-                Row(
-                  children: [
+                ),
+                const SizedBox(
+                  width: 95,
+                ),
+                const Text('Lights'),
+              ],
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            
+            //stats bar
+            Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Row(children: [
                     Text(
-                      "${brightness.round()}°C",
+                      "$humidity%",
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 20,
@@ -271,250 +260,268 @@ class _buttonTempScreenState extends State<buttonTempScreen> {
                         fontWeight: FontWeight.w900,
                       ),
                     ),
-                    const SizedBox(
-                      width: 1.0,
-                    ),
+                    const SizedBox(width: 10.0,),
                     const Icon(
-                      Icons.thermostat_outlined,
+                      Icons.opacity_outlined,
                       color: Colors.white,
                     ),
-                  ],
-                ),
-                Row(
-                  children: const [
-                    Text(
-                      "Normal",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontFamily: "Poppins",
-                        fontWeight: FontWeight.w900,
+                  ],),
+                  Row(
+                    children: [
+                      Text(
+                        "${brightness.round()}°C",
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontFamily: "Poppins",
+                          fontWeight: FontWeight.w900,
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      width: 10.0,
-                    ),
-                    Icon(
-                      CupertinoIcons.bolt,
-                      color: Colors.white,
-                    )
-                  ],
-                ),
-              ],
-            ),
-            margin: const EdgeInsets.symmetric(horizontal: 30,vertical: 10),
-            height: 50,
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-              border: Border.all(
-                width: 1,
-                color: Colors.orange.shade400,
-              ),
-              borderRadius: BorderRadius.circular(
-                8,
-              ),
-              boxShadow: const [
-                BoxShadow(
-                  color: Color(0x19fc6628),
-                  blurRadius: 6.64,
-                  offset: Offset(0, 4.13),
-                ),
-                BoxShadow(
-                  color: Color(0x21fc6628),
-                  blurRadius: 15.98,
-                  offset: Offset(0, 9.95),
-                ),
-                BoxShadow(
-                  color: Color(0x33fc6628),
-                  blurRadius: 53,
-                  offset: Offset(0, 33),
-                ),
-              ],
-              gradient:  const LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Color(0xffff5620), 
-                  Color(0x00f8772e)
+                      const SizedBox(
+                        width: 1.0,
+                      ),
+                      const Icon(
+                        Icons.thermostat_outlined,
+                        color: Colors.white,
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: const [
+                      Text(
+                        "Normal",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontFamily: "Poppins",
+                          fontWeight: FontWeight.w900,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10.0,
+                      ),
+                      Icon(
+                        CupertinoIcons.bolt,
+                        color: Colors.white,
+                      )
+                    ],
+                  ),
                 ],
               ),
+              margin: const EdgeInsets.symmetric(horizontal: 30,vertical: 10),
+              height: 50,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  width: 1,
+                  color: Colors.orange.shade400,
+                ),
+                borderRadius: BorderRadius.circular(
+                  8,
+                ),
+                boxShadow: const [
+                  BoxShadow(
+                    color: Color(0x19fc6628),
+                    blurRadius: 6.64,
+                    offset: Offset(0, 4.13),
+                  ),
+                  BoxShadow(
+                    color: Color(0x21fc6628),
+                    blurRadius: 15.98,
+                    offset: Offset(0, 9.95),
+                  ),
+                  BoxShadow(
+                    color: Color(0x33fc6628),
+                    blurRadius: 53,
+                    offset: Offset(0, 33),
+                  ),
+                ],
+                gradient:  const LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Color(0xffff5620), 
+                    Color(0x00f8772e)
+                  ],
+                ),
+              ),
             ),
-          ),
-
-          const SizedBox(
-            height: 20,
-          ),
-          //slider bar
-          Stack(
-              clipBehavior: Clip.none,
-              alignment: AlignmentDirectional.center,
-              children: [
-                const Positioned(
-                  child: Text('0°C'),
-                  bottom: 50,
-                  left: 1,
-                ),
-                const Positioned(
-                  child: Text('70°C'),
-                  bottom: 50,
-                  right: -10,
-                ),
-                const Positioned(
-                  child: Text('Temperature level'),
-                  bottom: 10,
-                ),
-                Positioned(
-                  top: 50,
-                  child: Container(
-                    width: 200,
-                    height: 200,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(100),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 1,
-                          blurRadius: 4,
-                          offset: const Offset(2, 4),
-                        ),
-                      ],
+    
+            const SizedBox(
+              height: 20,
+            ),
+            //slider bar
+            Stack(
+                clipBehavior: Clip.none,
+                alignment: AlignmentDirectional.center,
+                children: [
+                  const Positioned(
+                    child: Text('0°C'),
+                    bottom: 50,
+                    left: 1,
+                  ),
+                  const Positioned(
+                    child: Text('70°C'),
+                    bottom: 50,
+                    right: -10,
+                  ),
+                  const Positioned(
+                    child: Text('Temperature level'),
+                    bottom: 10,
+                  ),
+                  Positioned(
+                    top: 50,
+                    child: Container(
+                      width: 200,
+                      height: 200,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(100),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 1,
+                            blurRadius: 4,
+                            offset: const Offset(2, 4),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                //slider
-                SleekCircularSlider(
-                    min: 0,
-                    max: 70,
-                    initialValue: brightness,
-                    appearance: CircularSliderAppearance(
-                      infoProperties: InfoProperties(
-
-                        modifier: (value) {
-                          final roundedValue = value.ceil().toInt().toString();
-                          return '$roundedValue °C';
-                        },
-                        mainLabelStyle: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 40,
+                  //slider
+                  SleekCircularSlider(
+                      min: 0,
+                      max: 70,
+                      initialValue: brightness,
+                      appearance: CircularSliderAppearance(
+                        infoProperties: InfoProperties(
+    
+                          modifier: (value) {
+                            final roundedValue = value.ceil().toInt().toString();
+                            return '$roundedValue °C';
+                          },
+                          mainLabelStyle: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 40,
+                          ),
+                        ),
+                        size: 300,
+                        customColors: CustomSliderColors(
+                          hideShadow: true,
+                          shadowMaxOpacity: 0.2,
+                          shadowStep: 30,
+                          trackColor: Colors.orange.shade900,
+                          dotColor: Colors.white,
+                          progressBarColors: [
+                            Colors.deepOrange.shade600,
+                            Colors.orange.shade200,
+                            Colors.orange.shade50,
+                            ],
+                        ),
+                        customWidths: CustomSliderWidths(
+                          trackWidth: 4,
+                          handlerSize: 7,
                         ),
                       ),
-                      size: 300,
-                      customColors: CustomSliderColors(
-                        hideShadow: true,
-                        shadowMaxOpacity: 0.2,
-                        shadowStep: 30,
-                        trackColor: Colors.orange.shade900,
-                        dotColor: Colors.white,
-                        progressBarColors: [
-                          Colors.deepOrange.shade600,
-                          Colors.orange.shade200,
-                          Colors.orange.shade50,
-                          ],
+                      /*onChange: (value) {
+                          brightness = value;
+                          updateSlider(_focusedIndexRooms, value, _focusedIndexFloors);
+                        }*/
                       ),
-                      customWidths: CustomSliderWidths(
-                        trackWidth: 4,
-                        handlerSize: 7,
-                      ),
-                    ),
-                    /*onChange: (value) {
-                        brightness = value;
-                        updateSlider(_focusedIndexRooms, value, _focusedIndexFloors);
-                      }*/
-                    ),
-                
-              ]),
-          const SizedBox(height: 10,),
-          OutlinedButton(
-            child: const Icon(Icons.auto_awesome,size: 10,),
-            style: ButtonStyle(
-              fixedSize: MaterialStateProperty.all(const Size(40, 40)),
-              side: MaterialStateProperty.all(const BorderSide(width: 1)),
-              backgroundColor: MaterialStateProperty.all(fanBackColor),
-              foregroundColor: MaterialStateProperty.all(iconColor),
+                  
+                ]),
+            const SizedBox(height: 10,),
+            OutlinedButton(
+              child: const Icon(Icons.auto_awesome,size: 10,),
+              style: ButtonStyle(
+                fixedSize: MaterialStateProperty.all(const Size(40, 40)),
+                side: MaterialStateProperty.all(const BorderSide(width: 1)),
+                backgroundColor: MaterialStateProperty.all(fanBackColor),
+                foregroundColor: MaterialStateProperty.all(iconColor),
+              ),
+              onPressed: (){
+                setState(() {
+                  if(fanBackColor == Colors.red) {
+                    fanBackColor = Colors.white;
+                    iconColor = Colors.black;
+                  } else {
+                    fanBackColor = Colors.red;
+                    iconColor = Colors.white;
+                  }
+                });
+              }, 
+              //icon: Icon(Icons.add), 
+              //label: Text(''),
             ),
-            onPressed: (){
-              setState(() {
-                if(fanBackColor == Colors.red) {
-                  fanBackColor = Colors.white;
-                  iconColor = Colors.black;
-                } else {
-                  fanBackColor = Colors.red;
-                  iconColor = Colors.white;
-                }
-              });
-            }, 
-            //icon: Icon(Icons.add), 
-            //label: Text(''),
-          ),
-          const SizedBox(height: 5,),
-          //scrollsnaplist rooms
-          Expanded(
-            child: Stack(children: [
-              Center(
-                child: Container(
-                  width: 90,
-                  height: 45,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.orange.shade200.withOpacity(0.5),
-                          spreadRadius: 1,
-                          blurRadius: 4,
-                          offset: const Offset(2, 4),
-                        ),
-                      ]),
+            const SizedBox(height: 5,),
+            //scrollsnaplist rooms
+            Expanded(
+              child: Stack(children: [
+                Center(
+                  child: Container(
+                    width: 90,
+                    height: 45,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.orange.shade200.withOpacity(0.5),
+                            spreadRadius: 1,
+                            blurRadius: 4,
+                            offset: const Offset(2, 4),
+                          ),
+                        ]),
+                  ),
                 ),
-              ),
-              ScrollSnapList(
-                onItemFocus: _onItemFocusRooms,
-                itemSize: 140,
-                dynamicItemSize: true,
-                itemBuilder: _buildListItemRooms,
-                itemCount: nRooms,
-                reverse: false,
-              ),
-            ]),
-          ),
-          const SizedBox(
-            height: 10,
-          ), //scrollsnaplist floors
-          Expanded(
-            child: Stack(children: [
-              Center(
-                child: Container(
-                  width: 70,
-                  height: 35,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.orange.shade800.withOpacity(0.5),
-                          spreadRadius: 1,
-                          blurRadius: 4,
-                          offset: const Offset(2, 4),
-                        ),
-                      ]),
+                ScrollSnapList(
+                  onItemFocus: _onItemFocusRooms,
+                  itemSize: 140,
+                  dynamicItemSize: true,
+                  itemBuilder: _buildListItemRooms,
+                  itemCount: nRooms,
+                  reverse: false,
                 ),
-              ),
-              ScrollSnapList(
-                onItemFocus: _onItemFocusFloors,
-                itemSize: 140,
-                dynamicItemSize: true,
-                itemBuilder: _buildListItemFloors,
-                itemCount: floordata.length,
-                reverse: false,
-              ),
-            ]),
-          ),
-
-          const SizedBox(
-            height: 30,
-          ),
-        ],
+              ]),
+            ),
+            const SizedBox(
+              height: 10,
+            ), //scrollsnaplist floors
+            Expanded(
+              child: Stack(children: [
+                Center(
+                  child: Container(
+                    width: 70,
+                    height: 35,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.orange.shade800.withOpacity(0.5),
+                            spreadRadius: 1,
+                            blurRadius: 4,
+                            offset: const Offset(2, 4),
+                          ),
+                        ]),
+                  ),
+                ),
+                ScrollSnapList(
+                  onItemFocus: _onItemFocusFloors,
+                  itemSize: 140,
+                  dynamicItemSize: true,
+                  itemBuilder: _buildListItemFloors,
+                  itemCount: floordata.length,
+                  reverse: false,
+                ),
+              ]),
+            ),
+    
+            const SizedBox(
+              height: 30,
+            ),
+          ],
+        ),
       ),
     );
   }

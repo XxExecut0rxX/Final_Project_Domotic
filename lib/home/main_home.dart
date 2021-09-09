@@ -107,18 +107,21 @@ class MainHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        
-        children: [
-          titleHome,
-          const SizedBox(height: 14.0,),
-          general,
-          const SizedBox(
-            height: 14.0,
-          ),
-          slidesD,
-        ],
+      child: Padding(
+        padding: const EdgeInsets.all(18.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          
+          children: [
+            titleHome,
+            const SizedBox(height: 14.0,),
+            general,
+            const SizedBox(
+              height: 14.0,
+            ),
+            slidesD,
+          ],
+        ),
       ),
     ); 
   }

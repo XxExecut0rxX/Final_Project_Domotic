@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:pro_final/home/cards/button_lights_screen/button_light_screen.dart';
 
 
 class CardLights extends StatefulWidget {
@@ -89,7 +90,31 @@ class _CardLightsState extends State<CardLights> {
     );
 
     return GestureDetector( 
-      onTap: () { 
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const lightButtonScreen()));
+        
+        /*Navigator.push(context,
+          PageRouteBuilder(
+            transitionDuration: Duration(seconds: 1,),
+            transitionsBuilder: (BuildContext context, Animation<double> animation,
+              Animation<double> secAnimation, Widget child) {
+                animation = CurvedAnimation(parent: animation, curve: Curves.slowMiddle);
+                return ScaleTransition(
+                  alignment: Alignment.center,
+                  scale: animation,
+                  child: child,
+                );
+            },
+            pageBuilder: (BuildContext context,Animation<double> animation,Animation<double> secAnimation){
+              return const lightButtonScreen();
+            }
+          ),  
+        );*/
+      },
+      onLongPress: () { 
         updateData();
       },
       child: Container(
