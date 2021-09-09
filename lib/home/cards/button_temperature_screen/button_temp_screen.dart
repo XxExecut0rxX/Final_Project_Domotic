@@ -36,9 +36,9 @@ class _buttonTempScreenState extends State<buttonTempScreen> {
     index = index + 1;
     index1 = index1 + 1;
     if (!val) {
-      db.child('floor$index1/room$index').update({'lights': 'off'});
+      db.child('floor$index1/room$index').update({'fan': 'off'});
     } else {
-      db.child('floor$index1/room$index').update({'lights': 'on'});
+      db.child('floor$index1/room$index').update({'fan': 'on'});
     }
   }
 
@@ -46,7 +46,7 @@ class _buttonTempScreenState extends State<buttonTempScreen> {
   void updateSwitchToggler(int index, int index1) {
     index = index + 1;
     index1 = index1 + 1;
-    db.child('floor$index1/room$index').child('lights').onValue.listen((event) {
+    db.child('floor$index1/room$index').child('fan').onValue.listen((event) {
       final String desc = event.snapshot.value;
       _displ = desc;
       setState(() {
@@ -100,7 +100,9 @@ class _buttonTempScreenState extends State<buttonTempScreen> {
       final int desc = event.snapshot.value;
       setState(() {
         nRooms = desc;
-        _focusedIndexRooms = 0;
+        if (index1 == 2 && _focusedIndexRooms > 2) {
+          _focusedIndexRooms = 2;
+        }
       });
     });
   }
@@ -196,9 +198,12 @@ class _buttonTempScreenState extends State<buttonTempScreen> {
   void _onItemFocusRooms(int index) {
     _focusedIndexRooms = index;
     updateInitialTemp(_focusedIndexRooms, _focusedIndexFloors);
+    updateSwitchToggler(_focusedIndexRooms, _focusedIndexFloors);
   }
   void _onItemFocusFloors(int index) {
     _focusedIndexFloors = index;
+
+    updateSwitchToggler(_focusedIndexRooms, _focusedIndexFloors);
     updateInitialTemp(_focusedIndexRooms, _focusedIndexFloors);
     InitRoomsFloors(_focusedIndexFloors);
   }
@@ -430,30 +435,32 @@ class _buttonTempScreenState extends State<buttonTempScreen> {
                       ),
                   
                 ]),
-            const SizedBox(height: 10,),
-            OutlinedButton(
-              child: const Icon(Icons.auto_awesome,size: 10,),
-              style: ButtonStyle(
-                fixedSize: MaterialStateProperty.all(const Size(40, 40)),
-                side: MaterialStateProperty.all(const BorderSide(width: 1)),
-                backgroundColor: MaterialStateProperty.all(fanBackColor),
-                foregroundColor: MaterialStateProperty.all(iconColor),
-              ),
-              onPressed: (){
+            const SizedBox(height: 20,),
+            FlutterSwitch(
+              activeIcon: const Icon(Icons.hvac),
+              width: 110.0,
+              height: 55.0,
+              valueFontSize: 25.0,
+              toggleSize: 50.0,
+              value: switchtoggle,
+              borderRadius: 30.0,
+              padding: 5.0,
+              activeText: 'On',
+              inactiveText: 'Off',
+              showOnOff: true,
+              activeColor: Colors.orange.shade700,
+              inactiveColor: Colors.black12,
+              onToggle: (val) {
                 setState(() {
-                  if(fanBackColor == Colors.red) {
-                    fanBackColor = Colors.white;
-                    iconColor = Colors.black;
-                  } else {
-                    fanBackColor = Colors.red;
-                    iconColor = Colors.white;
-                  }
+                  status = val;
+                  updateDataonToggleSwitch(
+                      status, _focusedIndexRooms, _focusedIndexFloors);
                 });
-              }, 
-              //icon: Icon(Icons.add), 
-              //label: Text(''),
+              },
             ),
-            const SizedBox(height: 5,),
+            const SizedBox(
+              height: 30,
+            ),
             //scrollsnaplist rooms
             Expanded(
               child: Stack(children: [

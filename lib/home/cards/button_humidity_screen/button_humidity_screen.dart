@@ -1,6 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 import 'package:pro_final/main.dart';
 import 'package:scroll_snap_list/scroll_snap_list.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
@@ -31,9 +32,9 @@ class _ButtonHumidityScreenState extends State<ButtonHumidityScreen> {
     index = index + 1;
     index1 = index1 + 1;
     if (!val) {
-      db.child('floor$index1/room$index').update({'lights': 'off'});
+      db.child('floor$index1/room$index').update({'fan': 'off'});
     } else {
-      db.child('floor$index1/room$index').update({'lights': 'on'});
+      db.child('floor$index1/room$index').update({'fan': 'on'});
     }
   }
 
@@ -41,7 +42,7 @@ class _ButtonHumidityScreenState extends State<ButtonHumidityScreen> {
   void updateSwitchToggler(int index, int index1) {
     index = index + 1;
     index1 = index1 + 1;
-    db.child('floor$index1/room$index').child('lights').onValue.listen((event) {
+    db.child('floor$index1/room$index').child('fan').onValue.listen((event) {
       final String desc = event.snapshot.value;
       _displ = desc;
       setState(() {
@@ -186,11 +187,13 @@ class _ButtonHumidityScreenState extends State<ButtonHumidityScreen> {
 
   void _onItemFocusRooms(int index) {
     _focusedIndexRooms = index;
+    updateSwitchToggler(_focusedIndexRooms, _focusedIndexFloors);
     updateInitialTemp(_focusedIndexRooms, _focusedIndexFloors);
   }
 
   void _onItemFocusFloors(int index) {
     _focusedIndexFloors = index;
+    updateSwitchToggler(_focusedIndexRooms, _focusedIndexFloors);
     updateInitialTemp(_focusedIndexRooms, _focusedIndexFloors);
     InitRoomsFloors(_focusedIndexFloors);
   }
@@ -354,12 +357,12 @@ class _ButtonHumidityScreenState extends State<ButtonHumidityScreen> {
                 alignment: AlignmentDirectional.center,
                 children: [
                   const Positioned(
-                    child: Text('0°C'),
+                    child: Text('0%'),
                     bottom: 50,
                     left: 1,
                   ),
                   const Positioned(
-                    child: Text('100°C'),
+                    child: Text('100%'),
                     bottom: 50,
                     right: -10,
                   ),
@@ -426,35 +429,33 @@ class _ButtonHumidityScreenState extends State<ButtonHumidityScreen> {
                   ),
                 ]),
             const SizedBox(
-              height: 10,
+              height: 20,
             ),
-            OutlinedButton(
-              child: const Icon(
-                Icons.auto_awesome,
-                size: 10,
-              ),
-              style: ButtonStyle(
-                fixedSize: MaterialStateProperty.all(const Size(40, 40)),
-                side: MaterialStateProperty.all(const BorderSide(width: 1)),
-                backgroundColor: MaterialStateProperty.all(fanBackColor),
-                foregroundColor: MaterialStateProperty.all(iconColor),
-              ),
-              onPressed: () {
+            //switch
+            FlutterSwitch(
+              activeIcon: Icon(Icons.hvac),
+              width: 110.0,
+              height: 55.0,
+              valueFontSize: 25.0,
+              toggleSize: 50.0,
+              value: switchtoggle,
+              borderRadius: 30.0,
+              padding: 5.0,
+              activeText: 'On',
+              inactiveText: 'Off',
+              showOnOff: true,
+              activeColor: Colors.greenAccent.shade700,
+              inactiveColor: Colors.black12,
+              onToggle: (val) {
                 setState(() {
-                  if (fanBackColor == Colors.red) {
-                    fanBackColor = Colors.white;
-                    iconColor = Colors.black;
-                  } else {
-                    fanBackColor = Colors.red;
-                    iconColor = Colors.white;
-                  }
+                  status = val;
+                  updateDataonToggleSwitch(
+                      status, _focusedIndexRooms, _focusedIndexFloors);
                 });
               },
-              //icon: Icon(Icons.add),
-              //label: Text(''),
             ),
             const SizedBox(
-              height: 5,
+              height: 30,
             ),
             //scrollsnaplist rooms
             Expanded(

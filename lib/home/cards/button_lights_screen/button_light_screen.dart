@@ -124,7 +124,9 @@ class _lightButtonScreenState extends State<lightButtonScreen> {
       final int desc = event.snapshot.value;
       setState(() {
         nRooms = desc;
-        _focusedIndexRooms = 0;
+        if (index1 == 2 && _focusedIndexRooms > 2) {
+          _focusedIndexRooms = 2;
+        }
       });
     });
   }
@@ -188,7 +190,8 @@ class _lightButtonScreenState extends State<lightButtonScreen> {
     //horizontal
     if (index == floordata.length) {
       return const Center(
-        child: CircularProgressIndicator(),
+        child: //CircularProgressIndicator(),
+        Text(''),
       );
     }
     return SizedBox(
@@ -227,10 +230,10 @@ class _lightButtonScreenState extends State<lightButtonScreen> {
   }
   void _onItemFocusFloors(int index) {
     _focusedIndexFloors = index;
+    InitRoomsFloors(_focusedIndexFloors);
     updateSwitchToggler(_focusedIndexRooms, _focusedIndexFloors);
     updateInitialSlider(_focusedIndexRooms, _focusedIndexFloors);
     updateInitialTemp(_focusedIndexRooms, _focusedIndexFloors);
-    InitRoomsFloors(_focusedIndexFloors);
   }
 
   //main widget
@@ -379,7 +382,10 @@ class _lightButtonScreenState extends State<lightButtonScreen> {
                 ),
               ),
             ),
-    
+            
+            const SizedBox(
+              height: 20,
+            ),
             //slider bar
             Stack(
                 clipBehavior: Clip.none,
@@ -453,6 +459,7 @@ class _lightButtonScreenState extends State<lightButtonScreen> {
             const SizedBox(height: 20,),
             //switch
             FlutterSwitch(
+              activeIcon: const Icon(Icons.lightbulb_sharp),
               width: 110.0,
               height: 55.0,
               valueFontSize: 25.0,
