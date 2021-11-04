@@ -26,7 +26,7 @@ class CardHumidityState extends State<CardHumidity> {
   }
 
   void _activateListeners() {
-    db.child('floor1/room1/sensors').child('humidity').onValue.listen((event) {
+    db.child('floor2/room1/sensors').child('humidity').onValue.listen((event) {
       final String desc = event.snapshot.value.toString();
       setState(() {
         _displ = desc;

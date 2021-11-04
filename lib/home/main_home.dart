@@ -101,7 +101,7 @@ class MainHome extends StatelessWidget {
 
   final slidesD = Container(
     padding: const EdgeInsetsDirectional.all(1.0),
-    child: Center(child: DataSlides()),
+    child: const Center(child: DataSlides()),
   );
 
   @override

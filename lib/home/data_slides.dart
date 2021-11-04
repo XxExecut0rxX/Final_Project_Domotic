@@ -4,7 +4,7 @@ import 'package:pro_final/home/cards/card_electricity.dart';
 import 'package:pro_final/home/cards/card_Humidity.dart';
 import 'package:pro_final/home/cards/card_lights.dart';
 class DataSlides extends StatelessWidget {
-  DataSlides({ Key? key }) : super(key: key);
+  const DataSlides({ Key? key }) : super(key: key);
 
   final gTempSlide = const CardTemperature();
   final gElectricitySlide = const CardElectricity();

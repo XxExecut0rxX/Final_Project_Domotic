@@ -230,6 +230,17 @@ class _lightButtonScreenState extends State<lightButtonScreen> {
   }
   void _onItemFocusFloors(int index) {
     _focusedIndexFloors = index;
+    setState(() {
+      if(_focusedIndexFloors == 0) {
+        roomdata=['Room1', 'Room2', 'Room3', 'Room4', 'Room5', 'Room6', 'Room7'];
+      } else if(_focusedIndexFloors==1){
+        roomdata = [
+          'Lab1',
+          'Lab2',
+          'Room3',
+        ];
+      }
+    });
     InitRoomsFloors(_focusedIndexFloors);
     updateSwitchToggler(_focusedIndexRooms, _focusedIndexFloors);
     updateInitialSlider(_focusedIndexRooms, _focusedIndexFloors);

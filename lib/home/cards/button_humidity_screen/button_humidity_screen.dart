@@ -193,6 +193,25 @@ class _ButtonHumidityScreenState extends State<ButtonHumidityScreen> {
 
   void _onItemFocusFloors(int index) {
     _focusedIndexFloors = index;
+    setState(() {
+      if (_focusedIndexFloors == 0) {
+        roomdata = [
+          'Room1',
+          'Room2',
+          'Room3',
+          'Room4',
+          'Room5',
+          'Room6',
+          'Room7'
+        ];
+      } else if (_focusedIndexFloors == 1) {
+        roomdata = [
+          'Lab1',
+          'Lab2',
+          'Room3',
+        ];
+      }
+    });
     updateSwitchToggler(_focusedIndexRooms, _focusedIndexFloors);
     updateInitialTemp(_focusedIndexRooms, _focusedIndexFloors);
     InitRoomsFloors(_focusedIndexFloors);
@@ -433,7 +452,7 @@ class _ButtonHumidityScreenState extends State<ButtonHumidityScreen> {
             ),
             //switch
             FlutterSwitch(
-              activeIcon: Icon(Icons.hvac),
+              activeIcon: const Icon(Icons.hvac),
               width: 110.0,
               height: 55.0,
               valueFontSize: 25.0,

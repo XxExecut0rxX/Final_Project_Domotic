@@ -1,8 +1,5 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
-import 'package:pro_final/home/cards/button_humidity_screen/button_humidity_screen.dart';
-import 'package:pro_final/home/cards/button_lights_screen/button_light_screen.dart';
-import 'package:pro_final/home/cards/button_temperature_screen/button_temp_screen.dart';
 import 'package:pro_final/home/main_home.dart';
 import 'package:pro_final/home/profile_screen/profile_Screen.dart';
 import 'package:pro_final/home/notifications_screen/notif_screen.dart';

@@ -24,7 +24,7 @@ class _CardLightsState extends State<CardLights> {
   }
 
   void _activateListeners() {
-    db.child('floor1/room1').child('lights').onValue.listen((event) {
+    db.child('floor2/room1').child('lights').onValue.listen((event) {
       final String desc = event.snapshot.value;
       setState(() {
         _displ = desc;

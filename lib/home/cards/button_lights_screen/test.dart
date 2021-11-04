@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import, unused_field, sized_box_for_whitespace
+
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -31,7 +33,7 @@ class _Test1State extends State<Test1> {
             height: 50,
             width: 100,
             color: Colors.lightBlueAccent,
-            child: Center(child: Text("${data[index]}", style: TextStyle(fontSize: 30),)),
+            child: Center(child: Text(data[index], style: const TextStyle(fontSize: 30),)),
           )
         ],
       ),
