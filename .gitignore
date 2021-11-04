@@ -29,7 +29,7 @@
 .packages
 .pub-cache/
 .pub/
-/build/
+# /build/ only to show this for proves
 
 # Web related
 lib/generated_plugin_registrant.dart
