@@ -1,0 +1,151 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.pro_final"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+8-->D:\Flutter projects\pro_final\android\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="30" />
+9-->D:\Flutter projects\pro_final\android\app\src\main\AndroidManifest.xml
+10<!-- <uses-permission android:name="android.permission.RECORD_AUDIO"> -->
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->D:\Flutter projects\pro_final\android\app\src\main\AndroidManifest.xml:4:8-69
+11-->D:\Flutter projects\pro_final\android\app\src\main\AndroidManifest.xml:4:25-67
+12    <!-- Although the *SdkVersion is captured in gradle build files, this is required for non gradle builds -->
+13    <!-- <uses-sdk android:minSdkVersion="14"/> -->
+14    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+14-->[com.google.firebase:firebase-database:20.0.1] C:\Users\Alvaro\.gradle\caches\transforms-2\files-2.1\2f9a4e590e08f9948fc579b3f42a7f7a\jetified-firebase-database-20.0.1\AndroidManifest.xml:25:5-79
+14-->[com.google.firebase:firebase-database:20.0.1] C:\Users\Alvaro\.gradle\caches\transforms-2\files-2.1\2f9a4e590e08f9948fc579b3f42a7f7a\jetified-firebase-database-20.0.1\AndroidManifest.xml:25:22-76
+15
+16    <application
+16-->D:\Flutter projects\pro_final\android\app\src\main\AndroidManifest.xml:6:5-43:19
+17        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+17-->[androidx.core:core:1.1.0] C:\Users\Alvaro\.gradle\caches\transforms-2\files-2.1\3c8fd1bfddb99a7a7e21faa1397acdb4\core-1.1.0\AndroidManifest.xml:24:18-86
+18        android:icon="@mipmap/ic_launcher"
+18-->D:\Flutter projects\pro_final\android\app\src\main\AndroidManifest.xml:8:9-43
+19        android:label="pro_final" >
+19-->D:\Flutter projects\pro_final\android\app\src\main\AndroidManifest.xml:7:9-34
+20        <activity
+20-->D:\Flutter projects\pro_final\android\app\src\main\AndroidManifest.xml:9:9-37:20
+21            android:name="com.example.pro_final.MainActivity"
+21-->D:\Flutter projects\pro_final\android\app\src\main\AndroidManifest.xml:10:13-41
+22            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+22-->D:\Flutter projects\pro_final\android\app\src\main\AndroidManifest.xml:13:13-163
+23            android:hardwareAccelerated="true"
+23-->D:\Flutter projects\pro_final\android\app\src\main\AndroidManifest.xml:14:13-47
+24            android:launchMode="singleTop"
+24-->D:\Flutter projects\pro_final\android\app\src\main\AndroidManifest.xml:11:13-43
+25            android:theme="@style/LaunchTheme"
+25-->D:\Flutter projects\pro_final\android\app\src\main\AndroidManifest.xml:12:13-47
+26            android:windowSoftInputMode="adjustResize" >
+26-->D:\Flutter projects\pro_final\android\app\src\main\AndroidManifest.xml:15:13-55
+27
+28            <!--
+29                 Specifies an Android theme to apply to this Activity as soon as
+30                 the Android process has started. This theme is visible to the user
+31                 while the Flutter UI initializes. After that, this theme continues
+32                 to determine the Window background behind the Flutter UI.
+33            -->
+34            <meta-data
+34-->D:\Flutter projects\pro_final\android\app\src\main\AndroidManifest.xml:20:13-23:17
+35                android:name="io.flutter.embedding.android.NormalTheme"
+35-->D:\Flutter projects\pro_final\android\app\src\main\AndroidManifest.xml:21:15-70
+36                android:resource="@style/NormalTheme" />
+36-->D:\Flutter projects\pro_final\android\app\src\main\AndroidManifest.xml:22:15-52
+37            <!--
+38                 Displays an Android View that continues showing the launch screen
+39                 Drawable until Flutter paints its first frame, then this splash
+40                 screen fades out. A splash screen is useful to avoid any visual
+41                 gap between the end of Android's launch screen and the painting of
+42                 Flutter's first frame.
+43            -->
+44            <meta-data
+44-->D:\Flutter projects\pro_final\android\app\src\main\AndroidManifest.xml:29:13-32:17
+45                android:name="io.flutter.embedding.android.SplashScreenDrawable"
+45-->D:\Flutter projects\pro_final\android\app\src\main\AndroidManifest.xml:30:15-79
+46                android:resource="@drawable/launch_background" />
+46-->D:\Flutter projects\pro_final\android\app\src\main\AndroidManifest.xml:31:15-61
+47
+48            <intent-filter>
+48-->D:\Flutter projects\pro_final\android\app\src\main\AndroidManifest.xml:33:13-36:29
+49                <action android:name="android.intent.action.MAIN" />
+49-->D:\Flutter projects\pro_final\android\app\src\main\AndroidManifest.xml:34:17-68
+49-->D:\Flutter projects\pro_final\android\app\src\main\AndroidManifest.xml:34:25-66
+50
+51                <category android:name="android.intent.category.LAUNCHER" />
+51-->D:\Flutter projects\pro_final\android\app\src\main\AndroidManifest.xml:35:17-76
+51-->D:\Flutter projects\pro_final\android\app\src\main\AndroidManifest.xml:35:27-74
+52            </intent-filter>
+53        </activity>
+54        <!--
+55             Don't delete the meta-data below.
+56             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+57        -->
+58        <meta-data
+58-->D:\Flutter projects\pro_final\android\app\src\main\AndroidManifest.xml:40:9-42:33
+59            android:name="flutterEmbedding"
+59-->D:\Flutter projects\pro_final\android\app\src\main\AndroidManifest.xml:41:13-44
+60            android:value="2" />
+60-->D:\Flutter projects\pro_final\android\app\src\main\AndroidManifest.xml:42:13-30
+61
+62        <service
+62-->[:firebase_database] D:\Flutter projects\pro_final\build\firebase_database\intermediates\library_manifest\release\AndroidManifest.xml:8:9-12:19
+63            android:name="com.google.firebase.components.ComponentDiscoveryService"
+63-->[:firebase_database] D:\Flutter projects\pro_final\build\firebase_database\intermediates\library_manifest\release\AndroidManifest.xml:8:18-89
+64            android:directBootAware="true"
+64-->[com.google.firebase:firebase-common:20.0.0] C:\Users\Alvaro\.gradle\caches\transforms-2\files-2.1\e8c12af64c0d197211b7d090cb61cdf8\jetified-firebase-common-20.0.0\AndroidManifest.xml:35:13-43
+65            android:exported="false" >
+65-->[com.google.firebase:firebase-database:20.0.1] C:\Users\Alvaro\.gradle\caches\transforms-2\files-2.1\2f9a4e590e08f9948fc579b3f42a7f7a\jetified-firebase-database-20.0.1\AndroidManifest.xml:31:13-37
+66            <meta-data
+66-->[:firebase_database] D:\Flutter projects\pro_final\build\firebase_database\intermediates\library_manifest\release\AndroidManifest.xml:9:13-11:85
+67                android:name="com.google.firebase.components:io.flutter.plugins.firebase.database.FlutterFirebaseAppRegistrar"
+67-->[:firebase_database] D:\Flutter projects\pro_final\build\firebase_database\intermediates\library_manifest\release\AndroidManifest.xml:10:17-127
+68                android:value="com.google.firebase.components.ComponentRegistrar" />
+68-->[:firebase_database] D:\Flutter projects\pro_final\build\firebase_database\intermediates\library_manifest\release\AndroidManifest.xml:11:17-82
+69            <meta-data
+69-->[:firebase_core] D:\Flutter projects\pro_final\build\firebase_core\intermediates\library_manifest\release\AndroidManifest.xml:9:13-11:85
+70                android:name="com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseCoreRegistrar"
+70-->[:firebase_core] D:\Flutter projects\pro_final\build\firebase_core\intermediates\library_manifest\release\AndroidManifest.xml:10:17-124
+71                android:value="com.google.firebase.components.ComponentRegistrar" />
+71-->[:firebase_core] D:\Flutter projects\pro_final\build\firebase_core\intermediates\library_manifest\release\AndroidManifest.xml:11:17-82
+72            <meta-data
+72-->[com.google.firebase:firebase-database:20.0.1] C:\Users\Alvaro\.gradle\caches\transforms-2\files-2.1\2f9a4e590e08f9948fc579b3f42a7f7a\jetified-firebase-database-20.0.1\AndroidManifest.xml:32:13-34:85
+73                android:name="com.google.firebase.components:com.google.firebase.database.DatabaseRegistrar"
+73-->[com.google.firebase:firebase-database:20.0.1] C:\Users\Alvaro\.gradle\caches\transforms-2\files-2.1\2f9a4e590e08f9948fc579b3f42a7f7a\jetified-firebase-database-20.0.1\AndroidManifest.xml:33:17-109
+74                android:value="com.google.firebase.components.ComponentRegistrar" />
+74-->[com.google.firebase:firebase-database:20.0.1] C:\Users\Alvaro\.gradle\caches\transforms-2\files-2.1\2f9a4e590e08f9948fc579b3f42a7f7a\jetified-firebase-database-20.0.1\AndroidManifest.xml:34:17-82
+75        </service>
+76
+77        <provider
+77-->[com.google.firebase:firebase-common:20.0.0] C:\Users\Alvaro\.gradle\caches\transforms-2\files-2.1\e8c12af64c0d197211b7d090cb61cdf8\jetified-firebase-common-20.0.0\AndroidManifest.xml:26:9-31:39
+78            android:name="com.google.firebase.provider.FirebaseInitProvider"
+78-->[com.google.firebase:firebase-common:20.0.0] C:\Users\Alvaro\.gradle\caches\transforms-2\files-2.1\e8c12af64c0d197211b7d090cb61cdf8\jetified-firebase-common-20.0.0\AndroidManifest.xml:27:13-77
+79            android:authorities="com.example.pro_final.firebaseinitprovider"
+79-->[com.google.firebase:firebase-common:20.0.0] C:\Users\Alvaro\.gradle\caches\transforms-2\files-2.1\e8c12af64c0d197211b7d090cb61cdf8\jetified-firebase-common-20.0.0\AndroidManifest.xml:28:13-72
+80            android:directBootAware="true"
+80-->[com.google.firebase:firebase-common:20.0.0] C:\Users\Alvaro\.gradle\caches\transforms-2\files-2.1\e8c12af64c0d197211b7d090cb61cdf8\jetified-firebase-common-20.0.0\AndroidManifest.xml:29:13-43
+81            android:exported="false"
+81-->[com.google.firebase:firebase-common:20.0.0] C:\Users\Alvaro\.gradle\caches\transforms-2\files-2.1\e8c12af64c0d197211b7d090cb61cdf8\jetified-firebase-common-20.0.0\AndroidManifest.xml:30:13-37
+82            android:initOrder="100" />
+82-->[com.google.firebase:firebase-common:20.0.0] C:\Users\Alvaro\.gradle\caches\transforms-2\files-2.1\e8c12af64c0d197211b7d090cb61cdf8\jetified-firebase-common-20.0.0\AndroidManifest.xml:31:13-36
+83
+84        <activity
+84-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\Alvaro\.gradle\caches\transforms-2\files-2.1\0813e45a0b3806629b40dbeb70c75a60\jetified-play-services-base-17.1.0\AndroidManifest.xml:23:9-26:75
+85            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+85-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\Alvaro\.gradle\caches\transforms-2\files-2.1\0813e45a0b3806629b40dbeb70c75a60\jetified-play-services-base-17.1.0\AndroidManifest.xml:24:13-79
+86            android:exported="false"
+86-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\Alvaro\.gradle\caches\transforms-2\files-2.1\0813e45a0b3806629b40dbeb70c75a60\jetified-play-services-base-17.1.0\AndroidManifest.xml:25:13-37
+87            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+87-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\Alvaro\.gradle\caches\transforms-2\files-2.1\0813e45a0b3806629b40dbeb70c75a60\jetified-play-services-base-17.1.0\AndroidManifest.xml:26:13-72
+88
+89        <meta-data
+89-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Alvaro\.gradle\caches\transforms-2\files-2.1\e31537fb3ca3accaea0d4d9ddb9631cc\jetified-play-services-basement-17.0.0\AndroidManifest.xml:23:9-25:69
+90            android:name="com.google.android.gms.version"
+90-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Alvaro\.gradle\caches\transforms-2\files-2.1\e31537fb3ca3accaea0d4d9ddb9631cc\jetified-play-services-basement-17.0.0\AndroidManifest.xml:24:13-58
+91            android:value="@integer/google_play_services_version" />
+91-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Alvaro\.gradle\caches\transforms-2\files-2.1\e31537fb3ca3accaea0d4d9ddb9631cc\jetified-play-services-basement-17.0.0\AndroidManifest.xml:25:13-66
+92    </application>
+93
+94</manifest>
