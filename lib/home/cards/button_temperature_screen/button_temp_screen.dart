@@ -4,10 +4,9 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
+import 'package:pro_final/homePage.dart';
 import 'package:scroll_snap_list/scroll_snap_list.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
-
-import '../../../main.dart';
 
 class buttonTempScreen extends StatefulWidget {
   const buttonTempScreen({ Key? key }) : super(key: key);
@@ -249,7 +248,7 @@ class _buttonTempScreenState extends State<buttonTempScreen> {
                 TextButton(
                   onPressed: () {
                     Navigator.push(
-                        context, MaterialPageRoute(builder: (context) => const MyApp()));
+                        context, MaterialPageRoute(builder: (context) => const HomePage()));
                   },
                   child: Row(
                     children: const [

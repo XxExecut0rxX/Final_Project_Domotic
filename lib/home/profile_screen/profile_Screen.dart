@@ -3,6 +3,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:pro_final/main.dart';
 
 class profileScreen extends StatelessWidget {
   profileScreen({Key? key}) : super(key: key);
@@ -53,10 +54,11 @@ class profileScreen extends StatelessWidget {
       ProfileMenu(icon: Icons.help_outline, text: "Help Center", press: () {});
   final settings =
       ProfileMenu(icon: Icons.settings, text: "Settings", press: () {});
-  final logOut =
+  Widget logOut =
       ProfileMenu(icon: Icons.logout_outlined, text: "Log Out", press: () {});
   final techProblem =
       ProfileMenu(icon: Icons.person_outline, text: "Report Technical Problem", press: () {});
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -64,15 +66,19 @@ class profileScreen extends StatelessWidget {
           padding: const EdgeInsets.all(18.0),
           child: Column(
               children: [
-          bar,
-          const SizedBox(height: 20),
-          profilePicture,
-          const SizedBox(height: 20),
-          account,
-          help,
-          techProblem,
-          settings,
-          logOut,
+                bar,
+                const SizedBox(height: 20),
+                profilePicture,
+                const SizedBox(height: 20),
+                account,
+                help,
+                techProblem,
+                settings,
+                //logOut,
+                ProfileMenu(icon: Icons.logout_outlined, text: "Log Out", press: () {
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => const LoginPage()));
+                }),
               ],
             ),
         ));

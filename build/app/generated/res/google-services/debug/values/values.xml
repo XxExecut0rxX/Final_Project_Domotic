@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">1083908079326-hfg99lm69aul2e2oghht9ucdeg01tiiu.apps.googleusercontent.com</string>
+    <string name="firebase_database_url" translatable="false">https://iron-ring-307801-default-rtdb.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">1083908079326</string>
+    <string name="google_api_key" translatable="false">AIzaSyD6fV3__9RdcdallnZEf0NqneLvajM5Soc</string>
+    <string name="google_app_id" translatable="false">1:1083908079326:android:422c4299df79ab353e4c4f</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyD6fV3__9RdcdallnZEf0NqneLvajM5Soc</string>
+    <string name="google_storage_bucket" translatable="false">iron-ring-307801.appspot.com</string>
+    <string name="project_id" translatable="false">iron-ring-307801</string>
+</resources>

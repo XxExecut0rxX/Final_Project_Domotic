@@ -1,10 +1,6 @@
-import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
-import 'package:pro_final/home/main_home.dart';
-import 'package:pro_final/home/profile_screen/profile_Screen.dart';
-import 'package:pro_final/home/notifications_screen/notif_screen.dart';
-import 'package:pro_final/home/list_screen/list_Screen.dart';
-import 'package:titled_navigation_bar/titled_navigation_bar.dart';
+import 'homePage.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -18,13 +14,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  int pageIndex = 0;
-  List<Widget> pageList = [
-    MainHome(),
-    const ListScreen(),
-    const notifScreen(),
-    profileScreen()
-  ];
+  
 
   @override
   Widget build(BuildContext context) {
@@ -33,51 +23,273 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Scaffold(
-        backgroundColor: Colors.white,
-        body: 
-            //pageList[pageIndex],
-            PageTransitionSwitcher(
-              transitionBuilder: (child, primaryAnimation, secondaryAnimation) => 
-              FadeThroughTransition(
-                animation: primaryAnimation, 
-                secondaryAnimation: 
-                secondaryAnimation, 
-                child: child,
-                ),
-                child: pageList[pageIndex],
-              ),
-        bottomNavigationBar: TitledBottomNavigationBar(
-          activeColor: const Color(0xFF33E1EC),
-          inactiveColor: Colors.black45,
-          enableShadow: true,
-          reverse: true,
-          currentIndex: pageIndex, // Use this to update the Bar giving a position
-          onTap: (index) {
-            setState((){
-              pageIndex = index;
-            }); 
-          },
-          items: [
-            TitledNavigationBarItem(
-              title: const Text('Home'),
-              icon: const Icon(Icons.home_outlined),
-            ),
-            TitledNavigationBarItem(
-              title: const Text('Lists'),
-              icon: const Icon(Icons.list_alt),
-            ),
-            TitledNavigationBarItem(
-              title: const Text('Notifications'),
-              icon: const Icon(Icons.notifications_outlined),
-            ),
-            TitledNavigationBarItem(
-              title: const Text('Profile'),
-              icon: const Icon(Icons.person_outline),
-            ),
-          ],
+      home: 
+      Builder(
+        builder: (context) =>const LoginPage(),
+      ),
+    );
+  }
+}
+
+
+
+class LoginPage extends StatefulWidget {
+  const LoginPage({ Key? key }) : super(key: key);
+
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+
+  bool? _remerberMe = false;
+
+  String _userInput = '';
+  String _passwordInput = '';
+
+  final kHintTextStyle = const TextStyle(
+    color: Colors.white54,
+    fontFamily: 'OpenSans',
+  );
+
+  final kLabelStyle = const TextStyle(
+    color: Colors.white,
+    fontWeight: FontWeight.bold,
+    fontFamily: 'OpenSans',
+  );
+
+  final kBoxDecorationStyle = BoxDecoration(
+    color: const Color(0xFF6CA8F1),
+    borderRadius: BorderRadius.circular(10.0),
+    boxShadow: const [
+      BoxShadow(
+        color: Colors.black12,
+        blurRadius: 6.0,
+        offset: Offset(0, 2),
+      ),
+    ],
+  );
+
+  Widget _buildEmailTF() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Email',
+          style: kLabelStyle,
         ),
-      ), 
+        const SizedBox(
+          height: 10.0,
+        ),
+        Container(
+          alignment: Alignment.centerLeft,
+          decoration: kBoxDecorationStyle,
+          height: 60.0,
+          child: TextField(
+            onChanged: (value) {
+              setState(() {
+                _userInput = value;
+              });
+            },
+            keyboardType: TextInputType.emailAddress,
+            style: const TextStyle(color: Colors.white),
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              contentPadding: const EdgeInsets.only(
+                top: 14.0,
+              ),
+              prefixIcon: const Icon(
+                Icons.email,
+                color: Colors.white,
+              ),
+              hintText: 'Ingresa tu Correo Electronico',
+              hintStyle: kHintTextStyle,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildPassTF() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Password',
+          style: kLabelStyle,
+        ),
+        const SizedBox(
+          height: 10.0,
+        ),
+        Container(
+          alignment: Alignment.centerLeft,
+          decoration: kBoxDecorationStyle,
+          height: 60.0,
+          child: TextField(
+            onChanged: (value) {
+              setState(() {
+                _passwordInput = value;
+              });
+            },
+            obscureText: true,
+            keyboardType: TextInputType.emailAddress,
+            style: const TextStyle(color: Colors.white),
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              contentPadding: const EdgeInsets.only(
+                top: 14.0,
+              ),
+              prefixIcon: const Icon(
+                Icons.lock,
+                color: Colors.white,
+              ),
+              hintText: 'Ingresa tu Contraseña',
+              hintStyle: kHintTextStyle,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildForgotPasswordBtn() {
+    return Container(
+      alignment: Alignment.centerRight,
+      child: TextButton(
+        onPressed: () {},
+        child: Text(
+          'Olvido su contraseña?',
+          style: kLabelStyle,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildRememberMeCheckBox() {
+    // ignore: sized_box_for_whitespace
+    return Container(
+      height: 20.0,
+      child: Row(
+        children: [
+          Theme(
+            data: ThemeData(unselectedWidgetColor: Colors.white),
+            child: Checkbox(
+              value: _remerberMe,
+              checkColor: Colors.green,
+              activeColor: Colors.white,
+              onChanged: (value) {
+                setState(() {
+                  _remerberMe = value;
+                });
+              },
+            ),
+          ),
+          Text(
+            'Recordame?',
+            style: kLabelStyle,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildLogInBtn() {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(
+        horizontal: 0.0,
+        vertical: 25.0,
+      ),
+      // ignore: deprecated_member_use
+      child: RaisedButton(
+        onPressed: () {
+          setState(() {
+            if (_userInput == 'rigo@gmail.com' && _passwordInput == 'toor') {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const HomePage()));
+            }
+            
+          });
+        },
+        padding: const EdgeInsets.all(15.0),
+        elevation: 5.0,
+        color: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30.0),
+        ),
+        child: const Text(
+          'LOGIN',
+          style: TextStyle(
+            color: Color(0xFF527DAA),
+            letterSpacing: 1.0,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'OpenSans',
+          ),
+        ),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(
+        children: [
+          Container(
+            height: double.infinity,
+            width: double.infinity,
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Color(0xFF73AEF5),
+                  Color(0xFF61A4F1),
+                  Color(0xFF478DE0),
+                  Color(0xFF398AE5),
+                ],
+                stops: [0.1,0.4,0.7,0.9,],
+              ),
+            ),
+          ),
+          // ignore: sized_box_for_whitespace
+          Container(
+            height: double.infinity,
+            child: SingleChildScrollView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 40,
+                vertical: 120,
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Sign In',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: 'OpenSans',
+                      fontSize: 30.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 30.0,),
+                  _buildEmailTF(),
+                  const SizedBox(
+                    height: 30.0,
+                  ),
+                  _buildPassTF(),
+                  const SizedBox(),
+                  _buildForgotPasswordBtn(),
+                  _buildRememberMeCheckBox(),
+                  _buildLogInBtn(),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
