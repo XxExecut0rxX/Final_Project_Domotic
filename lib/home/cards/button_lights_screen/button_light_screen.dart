@@ -237,7 +237,10 @@ class _lightButtonScreenState extends State<lightButtonScreen> {
         roomdata = [
           'Lab1',
           'Lab2',
-          'Room3',
+          'Lab3',
+          'Room4',
+          'Room5',
+          'Room6',
         ];
       }
     });

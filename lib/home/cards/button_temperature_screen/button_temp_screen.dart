@@ -216,7 +216,10 @@ class _buttonTempScreenState extends State<buttonTempScreen> {
         roomdata = [
           'Lab1',
           'Lab2',
-          'Room3',
+          'Lab3',
+          'Room4',
+          'Room5',
+          'Room6',
         ];
       }
     });

@@ -2180,8 +2180,8 @@ com.google.android.gms.common.util.SharedPreferencesUtils
 androidx.core.app.NotificationCompat$MessagingStyle$Message
 com.google.android.gms.internal.base.zap
 kotlin.time.ClockKt
-com.google.firebase.R$drawable
 io.flutter.plugins.firebase.core.R$id
+com.google.firebase.R$drawable
 com.google.android.gms.common.api.internal.zap
 com.google.firebase.database.R$dimen
 com.google.android.gms.common.util.MurmurHash3
@@ -5253,10 +5253,10 @@ androidx.core.os.MessageCompat
 io.flutter.plugin.common.PluginRegistry
 kotlin.text.StringsKt___StringsKt
 io.flutter.plugins.firebase.database.R$drawable
-com.google.firebase.database.android.-$$Lambda$AndroidAuthTokenProvider$osJYqH9k0s6WcvseFM2DDFHB78I:
-    public final void onIdTokenChanged(com.google.firebase.internal.InternalTokenResult)
 com.google.firebase.database.android.-$$Lambda$AndroidAppCheckTokenProvider$60vFfzkhuN4dN7asQDMFpqCxmE0:
     public final void onAppCheckTokenChanged(com.google.firebase.appcheck.AppCheckTokenResult)
+com.google.firebase.database.android.-$$Lambda$AndroidAuthTokenProvider$osJYqH9k0s6WcvseFM2DDFHB78I:
+    public final void onIdTokenChanged(com.google.firebase.internal.InternalTokenResult)
 com.google.android.gms.signin.zab:
     private static final com.google.android.gms.common.api.Scope zar
     private static final com.google.android.gms.common.api.Scope zas
@@ -5618,6 +5618,6 @@ com.google.android.gms.common.stats.ConnectionTracker:
     private static boolean zzfb
 kotlin.KotlinVersion:
     public static final kotlin.KotlinVersion$Companion Companion
-com.google.firebase.database.android.-$$Lambda$AndroidAppCheckTokenProvider$d5ouCwY_MlmKFbkPIcW9iYuM3gk
 com.google.firebase.database.android.-$$Lambda$AndroidAuthTokenProvider$gJsys6XzUCti6lenAdcfFvM3tKY
+com.google.firebase.database.android.-$$Lambda$AndroidAppCheckTokenProvider$d5ouCwY_MlmKFbkPIcW9iYuM3gk
 io.flutter.plugin.platform.PlatformView$-CC
